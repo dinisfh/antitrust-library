@@ -8,6 +8,8 @@ export default async function Home(props: {
     query?: string
     sector?: string
     authority?: string
+    status?: string
+    caseType?: string
   }>
 }) {
   const searchParams = await props.searchParams
@@ -15,8 +17,10 @@ export default async function Home(props: {
   const query = searchParams?.query || ''
   const sectors = searchParams?.sector ? searchParams.sector.split(',') : []
   const authorities = searchParams?.authority ? searchParams.authority.split(',') : []
+  const statuses = searchParams?.status ? searchParams.status.split(',') : []
+  const caseTypes = searchParams?.caseType ? searchParams.caseType.split(',') : []
 
-  const casesMatch = await getCases(query, sectors, authorities)
+  const casesMatch = await getCases(query, sectors, authorities, statuses, caseTypes)
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">

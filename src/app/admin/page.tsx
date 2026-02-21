@@ -1,10 +1,11 @@
 import { createClient } from '@/utils/supabase/server'
+import { createAdminClient } from '@/utils/supabase/admin'
 import { redirect } from 'next/navigation'
-import { addUserManually, importUsersCSV } from './actions'
+import { addUserManually, importUsersCSV, approveUser, rejectUser } from './actions'
 
 // Função auxiliar para re-buscar dados
 async function getUsers() {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
     const { data, error } = await supabase
         .from('Users')
         .select('*')
@@ -39,6 +40,8 @@ export default async function AdminPage() {
     }
 
     const usersList = await getUsers()
+    const activeUsers = usersList.filter((u: any) => u.status === 'Active')
+    const pendingUsers = usersList.filter((u: any) => u.status === 'Pending')
 
     return (
         <div className="max-w-7xl mx-auto space-y-8">
@@ -63,6 +66,15 @@ export default async function AdminPage() {
                             />
                         </div>
                         <div>
+                            <label className="block text-sm font-medium text-dark-slate mb-1">Palavra-passe (Opcional)</label>
+                            <input
+                                name="password"
+                                type="text"
+                                className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none"
+                                placeholder="Padrão: megie2025"
+                            />
+                        </div>
+                        <div>
                             <label className="block text-sm font-medium text-dark-slate mb-1">Atribuição (Role)</label>
                             <select name="role" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none">
                                 <option value="Reader">Reader (Investigador/Leitor)</option>
@@ -78,8 +90,8 @@ export default async function AdminPage() {
                 {/* Painel de CSV Bulk Update */}
                 <div className="bg-white border border-light-gray rounded-xl shadow-sm p-6">
                     <h3 className="text-lg font-bold text-dark-slate mb-2 font-heading">Importar em Massa (CSV)</h3>
-                    <p className="text-xs text-dark-slate/70 mb-4 mb-4">
-                        O ficheiro CSV deve conter um cabeçalho e ser separado por vírgulas. Colunas esperadas: <strong>email</strong>, <strong>role</strong> (Admin ou Reader).
+                    <p className="text-xs text-dark-slate/70 mb-4">
+                        O ficheiro CSV deve conter cabeçalho. Colunas: <strong>email</strong>, <strong>role</strong> (Admin/Reader) e <strong>password</strong> (opcional). Contas sem password definida usarão <strong>megie2025</strong> por defeito.
                     </p>
                     <form action={importUsersCSV} className="space-y-6">
                         <div className="flex items-center justify-center w-full">
@@ -101,51 +113,130 @@ export default async function AdminPage() {
                 </div>
             </div>
 
-            {/* Lista de Utilizadores Existentes */}
-            <div className="bg-white border border-light-gray rounded-xl shadow-sm overflow-hidden">
+            {pendingUsers.length > 0 && (
+                <div className="bg-white border border-yellow-300 rounded-xl shadow-sm overflow-hidden mt-8 ring-1 ring-yellow-400">
+                    <div className="bg-yellow-50 px-6 py-4 border-b border-yellow-200">
+                        <h3 className="font-heading font-bold text-yellow-800">Pedidos de Acesso Pendentes ({pendingUsers.length})</h3>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-light-gray text-sm">
+                            <thead className="bg-yellow-50">
+                                <tr>
+                                    <th className="px-6 py-3 text-left font-semibold text-dark-slate">Email</th>
+                                    <th className="px-6 py-3 text-left font-semibold text-dark-slate">Data de Pedido</th>
+                                    <th className="px-6 py-3 text-right font-semibold text-dark-slate">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-light-gray bg-white">
+                                {pendingUsers.map((user: any) => (
+                                    <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                                        <td className="px-6 py-4 font-medium text-dark-slate">{user.email}</td>
+                                        <td className="px-6 py-4 text-dark-slate/70">{new Date(user.created_at).toLocaleDateString('pt-PT')}</td>
+                                        <td className="px-6 py-4 text-right">
+                                            <div className="flex items-center justify-end gap-2">
+                                                <form action={approveUser}>
+                                                    <input type="hidden" name="userId" value={user.id} />
+                                                    <button type="submit" className="text-xs bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700 font-bold transition-opacity">Aprovar</button>
+                                                </form>
+                                                <form action={rejectUser}>
+                                                    <input type="hidden" name="userId" value={user.id} />
+                                                    <button type="submit" className="text-xs bg-red-600 text-white px-3 py-1.5 rounded hover:bg-red-700 font-bold transition-opacity">Rejeitar</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+
+            <div className="bg-white border border-light-gray rounded-xl shadow-sm overflow-hidden mt-8">
                 <div className="px-6 py-4 border-b border-light-gray">
-                    <h3 className="font-heading font-bold text-dark-slate">Lista de Utilizadores ({usersList.length})</h3>
+                    <h3 className="font-heading font-bold text-dark-slate">Utilizadores Ativos ({activeUsers.length})</h3>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-light-gray text-sm">
-                        <thead className="bg-gray-50 text-dark-slate/70">
+                        <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left font-semibold uppercase tracking-wider text-xs">Email</th>
-                                <th className="px-6 py-3 text-left font-semibold uppercase tracking-wider text-xs">Permissões</th>
-                                <th className="px-6 py-3 text-left font-semibold uppercase tracking-wider text-xs">Estado</th>
-                                <th className="px-6 py-3 text-right font-semibold uppercase tracking-wider text-xs">Criado em</th>
+                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">Email</th>
+                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">Atribuição</th>
+                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">Data Registo</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-light-gray bg-white">
-                            {usersList.map((usr) => (
-                                <tr key={usr.id} className="hover:bg-gray-50/50 transition-colors">
-                                    <td className="px-6 py-4 whitespace-nowrap font-medium text-primary-blue">{usr.email}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className={`px-2 py-1 rounded text-[11px] font-bold uppercase ${usr.role === 'Admin' ? 'bg-purple-100 text-purple-700' : 'bg-slate-100 text-dark-slate'}`}>
-                                            {usr.role}
+                            {activeUsers.map((user: any) => (
+                                <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                                    <td className="px-6 py-4 font-medium text-dark-slate flex items-center gap-2">
+                                        <div className="w-6 h-6 rounded-full bg-light-gray flex items-center justify-center text-[10px] font-bold text-dark-slate">
+                                            {user.email.charAt(0).toUpperCase()}
+                                        </div>
+                                        {user.email}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${user.role === 'Admin' ? 'bg-primary-blue/10 text-primary-blue' : 'bg-gray-100 text-dark-slate'}`}>
+                                            {user.role}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className={`px-2 py-1 rounded-full text-[10px] uppercase font-bold ${usr.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                                            {usr.status}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-dark-slate/60 text-xs">
-                                        {new Date(usr.created_at).toLocaleDateString('pt-PT')}
+                                    <td className="px-6 py-4 text-dark-slate/70">
+                                        {new Date(user.created_at).toLocaleDateString('pt-PT')}
                                     </td>
                                 </tr>
                             ))}
-
-                            {usersList.length === 0 && (
-                                <tr>
-                                    <td colSpan={4} className="px-6 py-8 text-center text-dark-slate/50">
-                                        Não existem utilizadores registados na plataforma.
-                                    </td>
-                                </tr>
-                            )}
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            {/* Nova Secção: Gestão de Casos */}
+            <div className="bg-white border border-light-gray rounded-xl shadow-sm p-6 mt-8">
+                <h3 className="text-lg font-bold text-dark-slate mb-4 font-heading">Adicionar Novo Caso de Estudo (Manual)</h3>
+                <p className="text-sm text-dark-slate/70 mb-6">Utilize este formulário para forçar a criação de um processo na biblioteca (e.g. quando as integrações web erram). Detalhes como o Markdown avançado devem ser ajustados via Supabase após a criação deste esqueleto básico.</p>
+
+                <form action={async (formData) => {
+                    'use server'
+                    const { addCaseManually } = await import('./actions')
+                    await addCaseManually(formData)
+                }} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Título do Caso</label>
+                        <input name="title" type="text" required className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="Ex: Cartel das Seguradoras" />
+                    </div>
+
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Sumário (Resumo Curto)</label>
+                        <textarea name="summary" rows={3} className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="Breve introdução aos factos..."></textarea>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Autoridade Envolvida</label>
+                        <select name="authority" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none">
+                            <option value="AdC">AdC (Portugal)</option>
+                            <option value="Comissão Europeia">Comissão Europeia</option>
+                            <option value="DOJ">DOJ (EUA)</option>
+                            <option value="FTC">FTC (EUA)</option>
+                            <option value="CMA">CMA (Reino Unido)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Estado do Processo</label>
+                        <select name="status" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none">
+                            <option value="Em Investigação">Em Investigação</option>
+                            <option value="Decidido">Decidido (Concluído)</option>
+                            <option value="Em Recurso">Em Recurso</option>
+                        </select>
+                    </div>
+
+                    <div className="md:col-span-2 border-t border-light-gray pt-6 mt-2">
+                        <button type="submit" className="px-6 py-2.5 bg-primary-blue text-white rounded-md font-semibold text-sm hover:opacity-90 transition-opacity float-right">
+                            Criar e Publicar Caso
+                        </button>
+                        <div className="clear-both"></div>
+                    </div>
+                </form>
             </div>
 
         </div>

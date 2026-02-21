@@ -16,15 +16,7 @@ create policy "Users can view own profile."
   on public."Users" for select
   using ( auth.uid() = id );
 
--- Permite que Administradores leiam os perfis de todos
-create policy "Admins can view all profiles."
-  on public."Users" for select
-  using ( 
-    exists (
-      select 1 from public."Users"
-      where "Users".id = auth.uid() and "Users".role = 'Admin'
-    )
-  );
+
 
 -- Opcional (se for para ter triggers de Sync Auto com Auth.Users):
 -- Apenas criar o profile automaticamente se precisares ou caso os Users sejam importados manualmente pelo Admin via CSV.

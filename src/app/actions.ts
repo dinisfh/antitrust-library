@@ -6,6 +6,7 @@ export type CaseMatch = {
     id: string
     title: string
     summary: string
+    content?: string
     parties_involved: string[]
     case_type: string[]
     sector: string[]
@@ -18,7 +19,7 @@ export type CaseMatch = {
     source_urls: { name: string; url: string }[]
 }
 
-export async function getCases(searchQuery?: string, sectorFilters?: string[], authorityFilters?: string[]) {
+export async function getCases(searchQuery?: string, sectorFilters?: string[], authorityFilters?: string[], statusFilters?: string[], caseTypeFilters?: string[]) {
     const supabase = await createClient()
 
     let query = supabase.from('Cases').select('*').order('date_opened', { ascending: false })
@@ -38,6 +39,14 @@ export async function getCases(searchQuery?: string, sectorFilters?: string[], a
         query = query.in('authority', authorityFilters)
     }
 
+    if (statusFilters && statusFilters.length > 0) {
+        query = query.in('status', statusFilters)
+    }
+
+    if (caseTypeFilters && caseTypeFilters.length > 0) {
+        query = query.overlaps('case_type', caseTypeFilters)
+    }
+
     const { data, error } = await query
 
     if (error) {
@@ -46,4 +55,21 @@ export async function getCases(searchQuery?: string, sectorFilters?: string[], a
     }
 
     return data as CaseMatch[]
+}
+
+export async function getCaseById(id: string) {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+        .from('Cases')
+        .select('*')
+        .eq('id', id)
+        .single()
+
+    if (error || !data) {
+        console.error('Error fetching case by ID:', error)
+        return null
+    }
+
+    return data as CaseMatch
 }

@@ -24,7 +24,7 @@ export async function updateSession(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+                    cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
                     supabaseResponse = NextResponse.next({
                         request,
                     })
@@ -40,17 +40,40 @@ export async function updateSession(request: NextRequest) {
         data: { user },
     } = await supabase.auth.getUser()
 
-    const isAuthPage = request.nextUrl.pathname.startsWith('/login')
+    const pathname = request.nextUrl.pathname
+    const isAuthPage = pathname.startsWith('/login')
+    const isPendingPage = pathname.startsWith('/pending')
 
-    if (!user && !isAuthPage) {
-        // se não há log in e tentar aceder a qualquer lado sem ser login
+    // Se NÃO ESTÁ logado
+    if (!user) {
+        if (!isAuthPage) {
+            const url = request.nextUrl.clone()
+            url.pathname = '/login'
+            return NextResponse.redirect(url)
+        }
+        return supabaseResponse
+    }
+
+    // A partir daqui: ESTÁ logado
+
+    // Otimização: buscar estado à BD
+    const { data: profile } = await supabase
+        .from('Users')
+        .select('status')
+        .eq('id', user.id)
+        .single()
+
+    const isPending = profile?.status === 'Pending'
+
+    // Lógica 1: Está Pendente mas não está na sala de espera
+    if (isPending && !isPendingPage) {
         const url = request.nextUrl.clone()
-        url.pathname = '/login'
+        url.pathname = '/pending'
         return NextResponse.redirect(url)
     }
 
-    if (user && isAuthPage) {
-        // se já está com log in e tentar ir ao login, manda para a home
+    // Lógica 2: NÃO está pendente (Ativo), mas tenta ir para Auth ou Sala de Espera
+    if (!isPending && (isAuthPage || isPendingPage)) {
         const url = request.nextUrl.clone()
         url.pathname = '/'
         return NextResponse.redirect(url)
