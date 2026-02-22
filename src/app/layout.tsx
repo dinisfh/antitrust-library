@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { Suspense } from 'react'
 import { LanguageProvider } from '@/i18n/LanguageContext'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
             </main>
           </div>
         </LanguageProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
