@@ -2,6 +2,8 @@
 import fs from 'fs';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -49,26 +51,63 @@ async function runImport() {
         const c = cases[i];
         console.log(`[\u23f3 ${i + 1}/${cases.length}] Inserindo: ${c.title}...`);
 
-        // 1. Inserir o documento Mestre (O Caso)
-        const { data: insertedCase, error: caseError } = await supabase
+        // 1. Procurar documento mestre via title p/ simular UPSERT
+        const { data: existingCase } = await supabase
             .from("Cases")
-            .insert({
-                title: c.title,
-                summary: c.summary,
-                authority: c.authority,
-                status: c.status,
-                industry: c.industry,
-                tags: c.tags,
-                parties_involved: c.parties_involved,
-                fine_amount: c.fine_amount,
-                decision_date: c.decision_date || null,
-                links: c.links
-            })
-            .select('id')
+            .select("id")
+            .eq("title", c.title)
             .single();
 
+        let insertedCase;
+        let caseError;
+
+        if (existingCase) {
+            // Update em vez de Inserir (para preservar Timeline Reationships e apensar o Link veridico)
+            const { data, error } = await supabase
+                .from("Cases")
+                .update({
+                    summary: c.summary,
+                    authority: c.authority,
+                    status: c.status,
+                    industry: c.industry,
+                    tags: c.tags,
+                    parties_involved: c.parties_involved,
+                    fine_amount: c.fine_amount,
+                    decision_date: c.decision_date || null,
+                    links: c.links
+                })
+                .eq("id", existingCase.id)
+                .select("id")
+                .single();
+
+            insertedCase = data;
+            caseError = error;
+            console.log(`   🔄 Caso '${c.title}' foi atualizado com novos campos/links!`);
+        } else {
+            // Inserir de raiz se for Mestre desconhecido (Novo Caso)
+            const { data, error } = await supabase
+                .from("Cases")
+                .insert({
+                    title: c.title,
+                    summary: c.summary,
+                    authority: c.authority,
+                    status: c.status,
+                    industry: c.industry,
+                    tags: c.tags,
+                    parties_involved: c.parties_involved,
+                    fine_amount: c.fine_amount,
+                    decision_date: c.decision_date || null,
+                    links: c.links
+                })
+                .select('id')
+                .single();
+
+            insertedCase = data;
+            caseError = error;
+        }
+
         if (caseError || !insertedCase) {
-            console.error(`\u274c Erro ao inserir caso (${c.title}):`, caseError);
+            console.error(`\u274c Erro ao fazer upsert do caso (${c.title}):`, caseError);
             continue;
         }
 

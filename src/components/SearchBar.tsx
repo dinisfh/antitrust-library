@@ -2,11 +2,13 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTransition, useState, useEffect } from 'react'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 export default function SearchBar() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const [isPending, startTransition] = useTransition()
+    const { t } = useLanguage()
 
     const [query, setQuery] = useState(searchParams.get('query') || '')
 
@@ -38,10 +40,10 @@ export default function SearchBar() {
                 type="text"
                 value={query}
                 onChange={handleSearch}
-                placeholder="Pesquisar por título, empresa ou resumo..."
+                placeholder={t.header.search_placeholder}
                 className={`w-full pl-4 pr-10 py-2.5 border rounded-lg text-sm text-dark-slate focus:outline-none focus:ring-1 transition-all shadow-sm ${isPending
-                        ? 'border-primary-blue/50 ring-primary-blue/30 bg-gray-50'
-                        : 'border-light-gray bg-white focus:border-primary-blue focus:ring-primary-blue'
+                    ? 'border-primary-blue/50 ring-primary-blue/30 bg-gray-50'
+                    : 'border-light-gray bg-white focus:border-primary-blue focus:ring-primary-blue'
                     }`}
             />
             <div className="absolute right-3 top-3.5 flex items-center">

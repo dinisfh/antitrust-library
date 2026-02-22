@@ -2,6 +2,8 @@
 import fs from 'fs';
 import path from 'path';
 import Papa from 'papaparse';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -34,15 +36,15 @@ Fill in the gaps as best as you can based on your knowledge, but prioritize the 
 Expected JSON structure:
 {
   "title": "Case Name (e.g., European Commission vs Google Shopping)",
-  "summary": "2-3 paragraphs summarizing the case, the core theory of harm, and the outcome. Make it very elegant and legally sound.",
   "authority": "Agency (e.g., EC, FTC, CMA, DOJ, Courts)",
   "status": "Current status (e.g., Open, Closed, Blocked, Fined)",
   "industry": "Broad industry sector (e.g., Technology, Healthcare, Entertainment)",
+  "summary": "Must be AT LEAST 4 to 6 long, comprehensive paragraphs recounting the case formatted in RICH MARKDOWN. You MUST use Markdown Headings (e.g. ### Background, ### Theory of Harm, ### Outcome), bulleted lists, and **bold text** to make it extremely engaging and readable. If the case involves complex timelines, structural market changes, or financial transfers, you MUST include exactly ONE mermaid diagram using standard Markdown syntax (\`\`\`mermaid ... \`\`\`) to visually explain the relationships or timelines. Be extremely thorough, elegant, and legally sound. DO NOT write short summaries.",
   "tags": ["Array", "Of", "Relevant", "Keywords", "like Merger Control, Article 102, Cartel"],
   "parties_involved": ["Array", "Of", "Companies", "Involved"],
   "fine_amount": "Total fine amount as a string (e.g., '€2.42 billion') or null if none.",
-  "decision_date": "YYYY-MM-DD or close equivalent, or null.",
-  "links": ["Array", "Of", "Relevant", "Official", "Or", "News", "URLs", "about", "the case"],
+  "decision_date": "YYYY-MM-DD or close equivalent. If there isn't a strict 'Judicial Decision', use the date of the Settlement, Fine, or the most significant concluding event of the case. DO NOT leave as null if the text mentions a concluding year.",
+  "links": ["MUST INCLUDE the exact 'url' string provided in the row data as the VERY FIRST element, followed by any other legitimate Official or News URLs if you are 100% sure they exist. DO NOT HALLUCINATE LINKS."],
   "timeline_events": [
     { "date": "YYYY-MM-DD", "description": "Short description of event" }
   ]
@@ -110,11 +112,15 @@ async function runBulkImport(csvFilePath: string, outputJsonPath: string) {
 
             const processedCases: CaseExtraction[] = [];
 
+            // Alteração Pedida: Limitar de forma rígida a um batch experimental de 50 casos.
+            const limit = Math.min(rows.length, 50);
+            console.log(`\u25b6 Vamos processar apenas as primeiras ${limit} linhas (Controlo de Faturação AI).`);
+
             // Processa uma linha de cada vez (pode ser iterado com Promise.all para ser mais rápido noutra fase,
             // mas sequencial é mais seguro para não rebentar rate limits com grandes lotes)
-            for (let i = 0; i < rows.length; i++) {
+            for (let i = 0; i < limit; i++) {
                 const row = rows[i] as any;
-                console.log(`\n[\u23f3 ${i + 1}/${rows.length}] A processar: ${row.title || 'Linha ' + i} ...`);
+                console.log(`\n[\u23f3 ${i + 1}/${limit}] A processar: ${row.title || 'Linha ' + i} ...`);
 
                 const extractedData = await processRowWithAI(row);
 
@@ -133,7 +139,7 @@ async function runBulkImport(csvFilePath: string, outputJsonPath: string) {
 }
 
 // Executar script definindo os caminhos corretos (podem depois vir por argumentos de linha de comandos)
-const inputCsv = path.join(process.cwd(), 'data', 'sample-cases.csv');
+const inputCsv = path.join(process.cwd(), 'data', 'sample-50-real-cases.csv');
 const outputJson = path.join(process.cwd(), 'data', 'processed_cases.json');
 
 runBulkImport(inputCsv, outputJson);

@@ -73,3 +73,38 @@ export async function getCaseById(id: string) {
 
     return data as CaseMatch
 }
+
+export async function getUniqueFilters() {
+    const supabase = await createClient()
+
+    // Query apenas as colunas necessárias para minimizar payload
+    const { data, error } = await supabase
+        .from('Cases')
+        .select('authority, industry, status, tags')
+
+    if (error || !data) {
+        console.error('Error fetching unique filters:', error)
+        return { authorities: [], industries: [], statuses: [], tags: [] }
+    }
+
+    const authorities = new Set<string>()
+    const industries = new Set<string>()
+    const statuses = new Set<string>()
+    const tags = new Set<string>()
+
+    data.forEach(c => {
+        if (c.authority) authorities.add(c.authority)
+        if (c.industry) industries.add(c.industry)
+        if (c.status) statuses.add(c.status)
+        if (c.tags && Array.isArray(c.tags)) {
+            c.tags.forEach((t: string) => tags.add(t))
+        }
+    })
+
+    return {
+        authorities: Array.from(authorities).sort(),
+        industries: Array.from(industries).sort(),
+        statuses: Array.from(statuses).sort(),
+        tags: Array.from(tags).sort()
+    }
+}
