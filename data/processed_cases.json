@@ -1,0 +1,115 @@
+[
+  {
+    "title": "In the Matter of Illumina/GRAIL",
+    "summary": "The Federal Trade Commission (FTC) filed an administrative complaint on March 30, 2021, to block Illumina's proposed acquisition of GRAIL for $7.1 billion. The FTC's primary concern was that the merger would significantly reduce competition and stifle innovation in the burgeoning market for multi-cancer early detection tests. The agency argued that the acquisition would allow Illumina to control the market for these critical diagnostic tools, ultimately harming consumers by limiting choices and increasing prices. The case underscores the FTC's commitment to preserving competition in high-stakes healthcare markets, particularly those that impact early cancer detection and treatment.",
+    "authority": "FTC",
+    "status": "Closed",
+    "industry": "Healthcare",
+    "tags": [
+      "Merger Control",
+      "Antitrust",
+      "Healthcare",
+      "Innovation",
+      "FTC"
+    ],
+    "parties_involved": [
+      "Illumina",
+      "GRAIL"
+    ],
+    "fine_amount": null,
+    "decision_date": null,
+    "links": [
+      "https://www.ftc.gov/legal-library/browse/cases-proceedings/201-0144-illumina-grail-matter",
+      "https://www.ftc.gov/legal-library/browse/cases-proceedings/201-0144-illumina-inc-grail-inc-matter",
+      "https://www.medtechdive.com/news/illumina-avoids-fine-for-grail-purchase-in-european-court-victory/725896/",
+      "https://transactions.freshfields.com/post/102jieh/landmark-reversal-in-illumina-grail-the-european-commissions-power-to-review-no"
+    ],
+    "timeline_events": [
+      {
+        "date": "2021-03-30",
+        "description": "FTC filed an administrative complaint to block Illumina's acquisition of GRAIL."
+      },
+      {
+        "date": "2023-04-01",
+        "description": "FTC Commission reversed ALJ dismissal and ordered Illumina to divest Grail."
+      },
+      {
+        "date": "2023-06-01",
+        "description": "Illumina petitioned Fifth Circuit to review FTC order."
+      },
+      {
+        "date": "2023-09-01",
+        "description": "Fifth Circuit heard arguments in the case."
+      },
+      {
+        "date": "2023-12-15",
+        "description": "Fifth Circuit upheld FTC's anticompetitive finding but vacated and remanded order."
+      },
+      {
+        "date": "2023-12-17",
+        "description": "Illumina announced divestiture of Grail."
+      },
+      {
+        "date": "2024-06-01",
+        "description": "Grail spun off as independent public company."
+      },
+      {
+        "date": "2024-09-03",
+        "description": "ECJ annulled EC jurisdiction and gun-jumping fine in parallel EU proceedings."
+      }
+    ]
+  },
+  {
+    "title": "Epic Games v. Apple",
+    "summary": "In the landmark case of Epic Games v. Apple, Epic Games initiated legal proceedings against Apple, alleging that the tech giant engaged in anticompetitive practices through its App Store policies. Central to the case was Apple's imposition of a 30% commission on in-app purchases, which Epic argued constituted an unfair restraint of trade. Additionally, Epic challenged Apple's restrictions that prevented third-party app stores from operating on iOS devices, claiming these practices stifled competition and innovation in the mobile app market. The case raised significant questions about market dominance and the balance of power between platform providers and app developers.\n\nThe court's decision, delivered on August 13, 2020, found that while Apple did not have a monopoly in the broader gaming market, it did engage in anticompetitive conduct by enforcing its App Store policies. The ruling has implications for how digital marketplaces operate and has sparked ongoing discussions about the need for regulatory reforms in the tech industry.",
+    "authority": "Courts",
+    "status": "Closed",
+    "industry": "Technology",
+    "tags": [
+      "Antitrust",
+      "App Store",
+      "In-App Purchases",
+      "Market Dominance",
+      "Competition Law"
+    ],
+    "parties_involved": [
+      "Epic Games",
+      "Apple"
+    ],
+    "fine_amount": "$3.6 million (awarded to Apple)",
+    "decision_date": "2020-08-13",
+    "links": [
+      "https://en.wikipedia.org/wiki/Epic_Games_v._Apple",
+      "https://en.wikipedia.org/wiki/Epic_Games_v._Apple",
+      "https://law.justia.com/cases/federal/appellate-courts/ca9/21-16506/21-16506-2023-04-24.html",
+      "https://www.robinskaplan.com/newsroom/insights/summary-of-the-trial-decision-in-epic-games-v-apple",
+      "https://www.americanactionforum.org/insight/a-primer-on-the-current-status-of-the-epic-v-apple-case/"
+    ],
+    "timeline_events": [
+      {
+        "date": "2020-08-13",
+        "description": "Court ruling on the case."
+      },
+      {
+        "date": "2020-08-24",
+        "description": "Judge granted Epic's injunction to prevent Apple from revoking developer licenses but allowed Fortnite removal from App Store."
+      },
+      {
+        "date": "2020-09-28",
+        "description": "Preliminary hearing; judge leaned toward denying Fortnite reinstatement but maintained Unreal Engine protections."
+      },
+      {
+        "date": "2021-05-03",
+        "description": "Trial began in Epic Games v. Apple case."
+      },
+      {
+        "date": "2021-09",
+        "description": "District court ruled: rejected Epic's antitrust claims, enjoined Apple's anti-steering rules under California UCL, ordered Epic to pay Apple $3.6M for breach."
+      },
+      {
+        "date": "2023-04-24",
+        "description": "9th Circuit Court of Appeals affirmed district court's denial of antitrust liability and rejection of Epic's illegality defense."
+      }
+    ]
+  }
+]

@@ -8,16 +8,14 @@ const INGEST_API_KEY = process.env.INGEST_API_KEY || 'development_key_only'
 type IngestPayload = {
     title: string
     summary: string
-    parties_involved: string[]
-    case_type: string[]
-    sector: string[]
     authority: string
-    status: string
-    outcome_type: string[]
-    fine_amount_eur?: number | null
-    date_opened: string
-    date_decided?: string | null
-    source_url: { name: string; url: string }
+    status?: string // Ex: Em Investigação, Decidido
+    industry?: string
+    tags?: string[]
+    parties_involved?: string[]
+    fine_amount?: string | null
+    decision_date?: string | null
+    link: string // Será adicionado ao array de links
 }
 
 export async function POST(request: Request) {
@@ -36,8 +34,8 @@ export async function POST(request: Request) {
         const body: IngestPayload = await request.json()
 
         // 2. Validar payload base (Opcionalmente Zod pode ser usado aqui)
-        if (!body.title || !body.authority || !body.source_url) {
-            return NextResponse.json({ error: 'Missing required fields: title, authority, source_url' }, { status: 400 })
+        if (!body.title || !body.authority || !body.link) {
+            return NextResponse.json({ error: 'Missing required fields: title, authority, link' }, { status: 400 })
         }
 
         const supabase = createAdminClient() // Usar Admin Client porque rotas server-to-server não têm Auth Context
@@ -57,18 +55,18 @@ export async function POST(request: Request) {
         }
 
         if (existingCases && existingCases.length > 0) {
-            // 4a. O Caso existe -> Fazer Append da source_url (se não existir já lá)
+            // 4a. O Caso existe -> Fazer Append do Link (se não existir já lá)
             const existingCase = existingCases[0]
-            const currentUrls = existingCase.source_urls || []
+            const currentUrls = existingCase.links || []
 
-            const isDuplicateUrl = currentUrls.some((s: any) => s.url === body.source_url.url)
+            const isDuplicateUrl = currentUrls.includes(body.link)
 
             if (!isDuplicateUrl) {
-                const updatedUrls = [...currentUrls, body.source_url]
+                const updatedUrls = [...currentUrls, body.link]
 
                 const { error: updateError } = await supabase
                     .from('Cases')
-                    .update({ source_urls: updatedUrls })
+                    .update({ links: updatedUrls })
                     .eq('id', existingCase.id)
 
                 if (updateError) throw updateError
@@ -93,18 +91,16 @@ export async function POST(request: Request) {
                 .insert({
                     title: body.title,
                     summary: body.summary,
-                    parties_involved: body.parties_involved || [],
-                    case_type: body.case_type || [],
-                    sector: body.sector || [],
                     authority: body.authority,
                     status: body.status || 'Em Investigação',
-                    outcome_type: body.outcome_type || [],
-                    fine_amount_eur: body.fine_amount_eur || null,
-                    date_opened: body.date_opened || new Date().toISOString().split('T')[0],
-                    date_decided: body.date_decided || null,
-                    source_urls: [body.source_url]
+                    industry: body.industry || 'Genérico',
+                    tags: body.tags || [],
+                    parties_involved: body.parties_involved || [],
+                    fine_amount: body.fine_amount || null,
+                    decision_date: body.decision_date || null,
+                    links: [body.link]
                 })
-                .select()
+                .select('id')
                 .single()
 
             if (insertError) throw insertError

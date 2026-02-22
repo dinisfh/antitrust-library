@@ -6,23 +6,22 @@ export type CaseMatch = {
     id: string
     title: string
     summary: string
-    content?: string
-    parties_involved: string[]
-    case_type: string[]
-    sector: string[]
     authority: string
     status: string
-    outcome_type: string[]
-    fine_amount_eur: number | null
-    date_opened: string
-    date_decided: string | null
-    source_urls: { name: string; url: string }[]
+    industry: string
+    tags: string[]
+    parties_involved: string[]
+    fine_amount: string | null
+    decision_date: string | null
+    links: string[]
+    created_at: string
 }
 
 export async function getCases(searchQuery?: string, sectorFilters?: string[], authorityFilters?: string[], statusFilters?: string[], caseTypeFilters?: string[]) {
     const supabase = await createClient()
 
-    let query = supabase.from('Cases').select('*').order('date_opened', { ascending: false })
+    // Atualizado para usar created_at em vez do obsoleto date_opened
+    let query = supabase.from('Cases').select('*').order('created_at', { ascending: false })
 
     // Full Text Search on Title or Summary
     if (searchQuery) {
@@ -30,9 +29,9 @@ export async function getCases(searchQuery?: string, sectorFilters?: string[], a
         query = query.or(`title.ilike.%${searchQuery}%,summary.ilike.%${searchQuery}%`)
     }
 
-    // Array checks
+    // Array checks - Atualizado para coincidir com as colunas da Fase 5
     if (sectorFilters && sectorFilters.length > 0) {
-        query = query.overlaps('sector', sectorFilters)
+        query = query.in('industry', sectorFilters)
     }
 
     if (authorityFilters && authorityFilters.length > 0) {
@@ -44,7 +43,8 @@ export async function getCases(searchQuery?: string, sectorFilters?: string[], a
     }
 
     if (caseTypeFilters && caseTypeFilters.length > 0) {
-        query = query.overlaps('case_type', caseTypeFilters)
+        // Neste momento a API guarda como tags
+        query = query.overlaps('tags', caseTypeFilters)
     }
 
     const { data, error } = await query

@@ -103,24 +103,24 @@ export async function addCaseManually(formData: FormData) {
     const summary = formData.get('summary') as string
     const authority = formData.get('authority') as string
     const status = formData.get('status') as string
-    const rawSector = formData.get('sector') as string
+    const rawIndustry = formData.get('industry') as string
 
     if (!title || !authority) return; // Silent return
 
     const supabase = createAdminClient()
-    const sectorArray = rawSector ? rawSector.split(',').map(s => s.trim()) : ['Genérico']
+    const industryValue = rawIndustry ? rawIndustry.trim() : 'Genérico'
 
     const { error: dbError } = await supabase.from('Cases').insert({
         title,
         summary,
         authority,
         status,
-        sector: sectorArray,
-        case_type: ['Submissão Manual'],
+        industry: industryValue,
+        tags: ['Submissão Manual'],
         parties_involved: [],
-        outcome_type: [],
-        source_urls: [],
-        date_opened: new Date().toISOString()
+        decision_date: null,
+        links: [],
+        fine_amount: null
     })
 
     if (dbError) {

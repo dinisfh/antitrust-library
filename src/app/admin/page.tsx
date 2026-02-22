@@ -230,6 +230,11 @@ export default async function AdminPage() {
                         </select>
                     </div>
 
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Setor / Indústria (Opcional)</label>
+                        <input name="industry" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="Ex: Tecnologia, Retalho Biológico..." />
+                    </div>
+
                     <div className="md:col-span-2 border-t border-light-gray pt-6 mt-2">
                         <button type="submit" className="px-6 py-2.5 bg-primary-blue text-white rounded-md font-semibold text-sm hover:opacity-90 transition-opacity float-right">
                             Criar e Publicar Caso
