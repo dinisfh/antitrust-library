@@ -43,6 +43,18 @@ export const en = {
         official_sources: "Official Sources",
         no_sources: "No public documents linked.",
         source: "Source"
+    },
+    login_page: {
+        restricted_access: "Restricted Access",
+        description: "The Library platform is closed. Log in or request access to your account.",
+        existing_login: "Existing Login",
+        request_access_tab: "Request Access",
+        email_address: "Email Address",
+        email_placeholder: "name@company.com",
+        password: "Password",
+        password_min_length: "Minimum 6 characters.",
+        btn_request_access: "Request Platform Access",
+        btn_login: "Log into Platform"
     }
 };
 

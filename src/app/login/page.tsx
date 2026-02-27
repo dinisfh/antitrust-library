@@ -2,37 +2,39 @@
 
 import { useState } from 'react'
 import { login, requestAccess } from './actions'
+import { useLanguage } from '@/i18n/LanguageContext'
 
 export default function LoginPage() {
     const [isRegistering, setIsRegistering] = useState(false)
+    const { t } = useLanguage()
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center py-12 px-6 lg:px-8">
+        <div className="h-full w-full flex flex-col justify-center items-center">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="w-16 h-16 bg-light-gray rounded-xl mx-auto flex items-center justify-center mb-6 shadow-sm">
                     <span className="text-dark-slate font-heading font-bold text-xl select-none">AL</span>
                 </div>
                 <h2 className="text-center text-3xl font-heading font-bold tracking-tight text-dark-slate">
-                    Acesso Restrito
+                    {t.login_page?.restricted_access || 'Acesso Restrito'}
                 </h2>
                 <p className="mt-2 text-center text-sm text-dark-slate/70">
-                    A plataforma Library é fechada. Faça login ou peça acesso à sua conta.
+                    {t.login_page?.description || 'A plataforma Library é fechada. Faça login ou peça acesso à sua conta.'}
                 </p>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md w-full">
                 <div className="bg-white p-2 shadow-sm sm:rounded-xl border border-light-gray flex gap-2 mb-4">
                     <button
                         onClick={() => setIsRegistering(false)}
                         className={`flex-1 text-sm font-semibold rounded-lg py-2 transition-colors ${!isRegistering ? 'bg-primary-blue text-white shadow-sm' : 'text-dark-slate/60 hover:text-dark-slate hover:bg-gray-50'}`}
                     >
-                        Login Existente
+                        {t.login_page?.existing_login || 'Login Existente'}
                     </button>
                     <button
                         onClick={() => setIsRegistering(true)}
                         className={`flex-1 text-sm font-semibold rounded-lg py-2 transition-colors ${isRegistering ? 'bg-primary-blue text-white shadow-sm' : 'text-dark-slate/60 hover:text-dark-slate hover:bg-gray-50'}`}
                     >
-                        Pedir Acesso
+                        {t.login_page?.request_access_tab || 'Pedir Acesso'}
                     </button>
                 </div>
 
@@ -40,7 +42,7 @@ export default function LoginPage() {
                     <form className="space-y-6" action={isRegistering ? requestAccess : login}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-dark-slate">
-                                Endereço de Email
+                                {t.login_page?.email_address || 'Endereço de Email'}
                             </label>
                             <div className="mt-2">
                                 <input
@@ -50,14 +52,14 @@ export default function LoginPage() {
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-md border-0 py-2.5 text-dark-slate shadow-sm ring-1 ring-inset ring-light-gray placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-blue sm:text-sm sm:leading-6 px-3"
-                                    placeholder="nome@empresa.com"
+                                    placeholder={t.login_page?.email_placeholder || 'nome@empresa.com'}
                                 />
                             </div>
                         </div>
 
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-dark-slate">
-                                Palavra-passe
+                                {t.login_page?.password || 'Palavra-passe'}
                             </label>
                             <div className="mt-2">
                                 <input
@@ -72,7 +74,7 @@ export default function LoginPage() {
                                 />
                             </div>
                             {isRegistering && (
-                                <p className="mt-1 text-xs text-dark-slate/50">Mínimo 6 caracteres.</p>
+                                <p className="mt-1 text-xs text-dark-slate/50">{t.login_page?.password_min_length || 'Mínimo 6 caracteres.'}</p>
                             )}
                         </div>
 
@@ -81,7 +83,7 @@ export default function LoginPage() {
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-dark-slate px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue transition-colors"
                             >
-                                {isRegistering ? 'Pedir Acesso à Plataforma' : 'Entrar na Plataforma'}
+                                {isRegistering ? (t.login_page?.btn_request_access || 'Pedir Acesso à Plataforma') : (t.login_page?.btn_login || 'Entrar na Plataforma')}
                             </button>
                         </div>
                     </form>

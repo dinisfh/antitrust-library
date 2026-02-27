@@ -3,6 +3,7 @@ import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
+import SidebarWrapper from "@/components/SidebarWrapper";
 import { Suspense } from 'react'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -30,14 +31,15 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <Header />
-          <div className="flex flex-1 overflow-hidden relative w-full h-full">
-            <Suspense fallback={<aside className="w-64 bg-gray-50/50 hidden md:block border-r border-light-gray h-full animate-pulse z-0" />}>
-              <Sidebar />
-            </Suspense>
-            <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-gray-50/30">
-              {children}
-            </main>
-          </div>
+          <SidebarWrapper
+            sidebar={
+              <Suspense fallback={<aside className="w-64 bg-gray-50/50 hidden md:block border-r border-light-gray h-full animate-pulse z-0" />}>
+                <Sidebar />
+              </Suspense>
+            }
+          >
+            {children}
+          </SidebarWrapper>
         </LanguageProvider>
         <SpeedInsights />
       </body>

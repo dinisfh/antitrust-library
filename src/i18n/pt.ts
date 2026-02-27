@@ -45,5 +45,17 @@ export const pt: TranslationsType = {
         official_sources: "Fontes Oficiais",
         no_sources: "Nenhum documento público associado.",
         source: "Fonte"
+    },
+    login_page: {
+        restricted_access: "Acesso Restrito",
+        description: "A plataforma Library é fechada. Faça login ou peça acesso à sua conta.",
+        existing_login: "Login Existente",
+        request_access_tab: "Pedir Acesso",
+        email_address: "Endereço de Email",
+        email_placeholder: "nome@empresa.com",
+        password: "Palavra-passe",
+        password_min_length: "Mínimo 6 caracteres.",
+        btn_request_access: "Pedir Acesso à Plataforma",
+        btn_login: "Entrar na Plataforma"
     }
 };
