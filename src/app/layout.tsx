@@ -7,6 +7,7 @@ import SidebarWrapper from "@/components/SidebarWrapper";
 import { Suspense } from 'react'
 import { LanguageProvider } from '@/i18n/LanguageContext'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
           </SidebarWrapper>
         </LanguageProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
