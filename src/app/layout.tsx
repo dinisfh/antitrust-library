@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import SidebarWrapper from "@/components/SidebarWrapper";
 import { Suspense } from 'react'
 import { LanguageProvider } from '@/i18n/LanguageContext'
+import { cookies } from 'next/headers'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 
@@ -19,18 +20,22 @@ export const metadata: Metadata = {
   description: "Biblioteca de pesquisa e consulta contínua de casos Antitrust",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const langCookie = cookieStore.get('app-language')?.value;
+  const initialLang = (langCookie === 'pt' || langCookie === 'en') ? langCookie : 'en';
+
   return (
-    <html lang="pt" suppressHydrationWarning>
+    <html lang={initialLang} suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${sourceSans.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
-        <LanguageProvider>
+        <LanguageProvider initialLang={initialLang}>
           <Header />
           <SidebarWrapper
             sidebar={

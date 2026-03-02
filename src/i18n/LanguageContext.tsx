@@ -14,8 +14,8 @@ interface LanguageContextProps {
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-    const [lang, setLangState] = useState<Language>('en'); // Default is English
+export const LanguageProvider = ({ children, initialLang = 'en' }: { children: ReactNode, initialLang?: Language }) => {
+    const [lang, setLangState] = useState<Language>(initialLang);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -30,6 +30,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     const setLang = (newLang: Language) => {
         setLangState(newLang);
         localStorage.setItem('app-language', newLang);
+        document.cookie = `app-language=${newLang}; path=/; max-age=31536000`;
     };
 
     if (!mounted) {

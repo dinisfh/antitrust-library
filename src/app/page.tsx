@@ -1,8 +1,7 @@
-import { getCases } from '@/app/actions'
-import CaseCard from '@/components/CaseCard'
 import SearchBar from '@/components/SearchBar'
-import { HeroText, NoResultsText } from '@/components/HomeText'
+import { HeroText } from '@/components/HomeText'
 import { Suspense } from 'react'
+import { CasesFeed, CasesFeedSkeleton } from '@/components/CasesFeed'
 
 export default async function Home(props: {
   searchParams?: Promise<{
@@ -21,7 +20,7 @@ export default async function Home(props: {
   const statuses = searchParams?.status ? searchParams.status.split(',') : []
   const caseTypes = searchParams?.caseType ? searchParams.caseType.split(',') : []
 
-  const casesMatch = await getCases(query, sectors, authorities, statuses, caseTypes)
+  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes })
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
@@ -33,13 +32,15 @@ export default async function Home(props: {
         </Suspense>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {casesMatch.map((c) => (
-          <CaseCard key={c.id} data={c} />
-        ))}
-
-        {casesMatch.length === 0 && <NoResultsText />}
-      </div>
+      <Suspense key={suspenseKey} fallback={<CasesFeedSkeleton />}>
+        <CasesFeed
+          query={query}
+          sectors={sectors}
+          authorities={authorities}
+          statuses={statuses}
+          caseTypes={caseTypes}
+        />
+      </Suspense>
     </div>
   )
 }

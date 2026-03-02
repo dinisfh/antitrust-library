@@ -21,7 +21,8 @@ export async function getCases(searchQuery?: string, sectorFilters?: string[], a
     const supabase = await createClient()
 
     // Atualizado para usar created_at em vez do obsoleto date_opened
-    let query = supabase.from('Cases').select('*').order('created_at', { ascending: false })
+    // Fetch only needed columns to avoid huge SVG payloads, and add a reasonable limit
+    let query = supabase.from('Cases').select('id, title, summary, authority, status, industry, tags, parties_involved, fine_amount, decision_date, links, created_at').order('created_at', { ascending: false }).limit(100)
 
     // Full Text Search on Title or Summary
     if (searchQuery) {

@@ -45,7 +45,7 @@ export default function CaseCard({ data }: { data: CaseMatch }) {
                     <span className="text-[11px] font-bold px-2 py-1 bg-slate-100 text-dark-slate rounded tracking-wide truncate">
                         {data.authority}
                     </span>
-                    <span className="text-[11px] font-semibold text-dark-slate/60 whitespace-nowrap">
+                    <span suppressHydrationWarning className="text-[11px] font-semibold text-dark-slate/60 whitespace-nowrap">
                         {displayDate}
                     </span>
                 </div>
