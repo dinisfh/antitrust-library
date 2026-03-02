@@ -108,3 +108,8 @@ export async function getUniqueFilters() {
         tags: Array.from(tags).sort()
     }
 }
+
+export async function signOutAction() {
+    const supabase = await createClient()
+    await supabase.auth.signOut()
+}

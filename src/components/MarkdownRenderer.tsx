@@ -71,9 +71,19 @@ export default function MarkdownRenderer({ content }: { content: string }) {
                             return <MermaidChart code={String(children).replace(/\n$/, '')} />;
                         }
 
+                        // Intercepta blocos de código 'svg' para renderização direta
+                        if (match && match[1] === 'svg') {
+                            return (
+                                <div
+                                    className="my-8 py-6 w-full overflow-x-auto flex justify-center bg-white border border-slate-200 shadow-sm rounded-xl [&>svg]:max-w-full [&>svg]:h-auto"
+                                    dangerouslySetInnerHTML={{ __html: String(children).replace(/\n$/, '') }}
+                                />
+                            );
+                        }
+
                         // Restantes pedaços de código inline ou não-mermaid são normais
                         return (
-                            <code {...rest} className={`${className || ''} bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm`}>
+                            <code {...rest} className={`${className || ''} bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm break-words whitespace-pre-wrap`}>
                                 {children}
                             </code>
                         );

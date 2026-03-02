@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import LanguageToggle from './LanguageToggle'
 import { useLanguage } from '@/i18n/LanguageContext'
+import { signOutAction } from '@/app/actions'
+import { useRouter } from 'next/navigation'
 
 type HeaderUIProps = {
     isAdmin: boolean;
@@ -12,6 +14,13 @@ type HeaderUIProps = {
 
 export default function HeaderUI({ isAdmin, userEmail, userInitial }: HeaderUIProps) {
     const { t } = useLanguage()
+    const router = useRouter()
+
+    const handleSignOut = async () => {
+        await signOutAction();
+        router.push('/login');
+        router.refresh();
+    }
 
     return (
         <header className="h-16 bg-white border-b border-light-gray flex items-center justify-between px-6 shrink-0 relative z-50">
@@ -39,13 +48,30 @@ export default function HeaderUI({ isAdmin, userEmail, userInitial }: HeaderUIPr
                     </Link>
                 )}
 
-                <span className="text-[11px] font-bold text-dark-slate/80 hidden sm:block">
-                    {userEmail}
-                </span>
-
-                <button className="w-8 h-8 rounded-full bg-primary-blue text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-default">
-                    {userInitial}
-                </button>
+                {userEmail !== 'Visitor' ? (
+                    <div className="flex items-center gap-3 ml-2 border-l border-light-gray pl-4">
+                        <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-bold text-dark-slate/80 hidden sm:block">
+                                {userEmail}
+                            </span>
+                            <button className="w-8 h-8 rounded-full bg-primary-blue text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-default">
+                                {userInitial}
+                            </button>
+                        </div>
+                        <button
+                            onClick={handleSignOut}
+                            className="text-[11px] font-bold text-dark-slate/60 hover:text-red-600 transition-colors uppercase tracking-widest pl-2"
+                        >
+                            {t.header?.logout || 'Sair'}
+                        </button>
+                    </div>
+                ) : (
+                    <div className="ml-2 border-l border-light-gray pl-4">
+                        <Link href="/login" className="text-[11px] font-bold text-primary-blue hover:text-blue-800 transition-colors uppercase tracking-widest">
+                            {t.header?.login || 'Entrar'}
+                        </Link>
+                    </div>
+                )}
             </div>
         </header>
     )

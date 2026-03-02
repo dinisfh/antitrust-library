@@ -104,11 +104,20 @@ export async function addCaseManually(formData: FormData) {
     const authority = formData.get('authority') as string
     const status = formData.get('status') as string
     const rawIndustry = formData.get('industry') as string
+    const rawSources = formData.get('sources') as string
 
     if (!title || !authority) return; // Silent return
 
     const supabase = createAdminClient()
     const industryValue = rawIndustry ? rawIndustry.trim() : 'Genérico'
+
+    let parsedLinks: string[] = []
+    if (rawSources) {
+        parsedLinks = rawSources
+            .split('\n')
+            .map(s => s.trim())
+            .filter(s => s.startsWith('http'))
+    }
 
     const { error: dbError } = await supabase.from('Cases').insert({
         title,
@@ -119,7 +128,7 @@ export async function addCaseManually(formData: FormData) {
         tags: ['Submissão Manual'],
         parties_involved: [],
         decision_date: null,
-        links: [],
+        links: parsedLinks,
         fine_amount: null
     })
 
@@ -143,6 +152,29 @@ export async function approveUser(formData: FormData) {
 }
 
 export async function rejectUser(formData: FormData) {
+    const userId = formData.get('userId') as string
+    if (!userId) return
+
+    const admin = createAdminClient()
+    await admin.from('Users').delete().eq('id', userId)
+    await admin.auth.admin.deleteUser(userId)
+
+    revalidatePath('/admin')
+}
+
+export async function updateUserRole(formData: FormData) {
+    const userId = formData.get('userId') as string
+    const role = formData.get('role') as string
+
+    if (!userId || !role) return
+
+    const admin = createAdminClient()
+    await admin.from('Users').update({ role }).eq('id', userId)
+
+    revalidatePath('/admin')
+}
+
+export async function deleteActiveUser(formData: FormData) {
     const userId = formData.get('userId') as string
     if (!userId) return
 
