@@ -34,7 +34,7 @@ DO NOT wrap the response in markdown code blocks like \`\`\`json. Just return th
 
 {
   "title": "Case Name (e.g., European Commission vs Google Shopping)",
-  "summary": "2-3 paragraphs summarizing the case, the core theory of harm, and the outcome.",
+  "summary": "Must be AT LEAST 10 long, comprehensive paragraphs recounting the case formatted in RICH MARKDOWN. The FIRST paragraph MUST be a short, direct summary of the entire case. You MUST use Markdown Headings (e.g. ### Background, ### Theory of Harm, ### Outcome), bulleted lists, and **bold text** to make it extremely engaging and readable. If the case involves complex timelines, structural market changes, or financial transfers, you MUST include exactly ONE visually appealing and complex SVG diagram using standard Markdown syntax (\`\`\`svg\\n<svg>...</svg>\\n\`\`\`) to visually explain the relationships or timelines. DO NOT output a mermaid diagram, it MUST be raw SVG. CRITICAL RULE: YOU MUST BE 100% FACTUAL. DO NOT HALLUCINATE ANY DATES, COMPANIES, OR FINES. If you do not know a detail for a fact, skip it. You MUST cite your claims implicitly or explicitly based on real-world knowledge. Be extremely thorough, elegant, and legally sound. DO NOT write short summaries.",
   "authority": "Agencia (e.g., EC, FTC, CMA, AdC)",
   "status": "Current status (e.g., Open, Closed, Under Appeal, Fined)",
   "industry": "Broad industry sector (e.g., Technology, Pharmaceuticals)",

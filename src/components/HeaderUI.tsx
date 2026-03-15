@@ -30,7 +30,7 @@ export default function HeaderUI({ isAdmin, userEmail, userInitial }: HeaderUIPr
                 </a>
                 <Link href="/">
                     <h1 className="font-heading font-bold text-dark-slate text-xl hover:text-primary-blue transition-colors cursor-pointer">
-                        {t.header?.library || 'Antitrust Library'}
+                        {t.header?.library || 'Antitrust Case Library'}
                     </h1>
                 </Link>
             </div>
@@ -60,14 +60,14 @@ export default function HeaderUI({ isAdmin, userEmail, userInitial }: HeaderUIPr
                         </div>
                         <button
                             onClick={handleSignOut}
-                            className="text-[11px] font-bold text-dark-slate/60 hover:text-red-600 transition-colors uppercase tracking-widest pl-2"
+                            className="text-[11px] font-bold text-red-600 bg-red-50 hover:bg-red-100 active:bg-red-200 px-3 py-1.5 rounded-md transition-all uppercase tracking-widest ml-2 active:scale-95 shadow-sm hover:shadow"
                         >
                             {t.header?.logout || 'Sair'}
                         </button>
                     </div>
                 ) : (
                     <div className="ml-2 border-l border-light-gray pl-4">
-                        <Link href="/login" className="text-[11px] font-bold text-primary-blue hover:text-blue-800 transition-colors uppercase tracking-widest">
+                        <Link href="/login" className="text-[11px] font-bold text-primary-blue bg-blue-50 hover:bg-blue-100 active:bg-blue-200 px-3 py-1.5 rounded-md transition-all uppercase tracking-widest active:scale-95 shadow-sm hover:shadow inline-block">
                             {t.header?.login || 'Entrar'}
                         </Link>
                     </div>

@@ -22,13 +22,17 @@ async function fetchPageExtracts(pageIds: number[]) {
 }
 
 async function main() {
-    console.log("📥 Fetching 25 US Supreme Court / Circuit Antitrust cases...");
-    const usIds = await fetchWikiCategory("Category:United_States_antitrust_case_law", 25);
+    console.log("📥 Fetching US antitrust cases...");
+    const usIds = await fetchWikiCategory("Category:United_States_antitrust_case_law", 100);
 
-    console.log("📥 Fetching 25 European Commission Antitrust cases...");
-    const euIds = await fetchWikiCategory("Category:European_Union_competition_case_law", 25);
+    console.log("📥 Fetching European Commission Antitrust cases...");
+    const euIds = await fetchWikiCategory("Category:European_Union_competition_case_law", 100);
 
-    const allIds = [...usIds, ...euIds];
+    console.log("📥 Fetching UK competition law cases...");
+    const ukIds = await fetchWikiCategory("Category:United_Kingdom_competition_law_cases", 50);
+
+    // Deduplicate IDs
+    const allIds = [...new Set([...usIds, ...euIds, ...ukIds])];
     const cases = [];
 
     console.log(`\n⏳ Fetching comprehensive descriptions for ${allIds.length} real cases from Wikipedia...`);

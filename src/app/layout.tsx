@@ -16,7 +16,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Antitrust Library",
+  title: "Antitrust Case Library",
   description: "Biblioteca de pesquisa e consulta contínua de casos Antitrust",
 };
 

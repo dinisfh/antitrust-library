@@ -8,6 +8,7 @@ type CaseData = {
     title: string;
     authority: string;
     decision_date: string | null;
+    start_date: string | null;
     created_at: string;
     industry: string;
     tags: string[];
@@ -22,17 +23,25 @@ export default function CaseDetailUI({ caseData }: { caseData: CaseData }) {
     const { t, lang } = useLanguage()
 
     let displayDate = t.case_card.no_date;
-    if (caseData.decision_date) {
+    
+    const formatDateStr = (dateStr: string) => {
         try {
-            const dateObj = new Date(caseData.decision_date);
+            const dateObj = new Date(dateStr);
             if (!isNaN(dateObj.getTime())) {
                 const localeStr = lang === 'pt' ? 'pt-PT' : 'en-US';
-                displayDate = dateObj.toLocaleDateString(localeStr, { month: 'long', year: 'numeric' });
-            } else {
-                displayDate = caseData.decision_date;
+                return dateObj.toLocaleDateString(localeStr, { month: 'long', year: 'numeric' });
             }
-        } catch {
-            displayDate = caseData.decision_date;
+        } catch {}
+        return dateStr;
+    }
+
+    if (caseData.start_date || caseData.decision_date) {
+        if (caseData.start_date && caseData.decision_date) {
+            displayDate = `${formatDateStr(caseData.start_date)} — ${formatDateStr(caseData.decision_date)}`;
+        } else if (caseData.decision_date) {
+            displayDate = `${lang === 'pt' ? 'Decisão:' : 'Decision:'} ${formatDateStr(caseData.decision_date)}`;
+        } else if (caseData.start_date) {
+            displayDate = `${lang === 'pt' ? 'Início:' : 'Start:'} ${formatDateStr(caseData.start_date)}`;
         }
     }
 

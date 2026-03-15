@@ -9,9 +9,12 @@ type SidebarUIProps = {
     INDUSTRIES: string[]
     STATUSES: string[]
     TAGS: string[]
+    GEOGRAPHIES: string[]
+    COMPANIES: string[]
+    DECADES: string[]
 }
 
-export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: SidebarUIProps) {
+export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEOGRAPHIES, COMPANIES, DECADES }: SidebarUIProps) {
     const router = useRouter()
     const searchParams = useSearchParams()
     const pathname = usePathname()
@@ -28,8 +31,11 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: S
     const activeIndustries = searchParams.get('industry')?.split(',') || []
     const activeStatuses = searchParams.get('status')?.split(',') || []
     const activeTags = searchParams.get('caseType')?.split(',') || []
+    const activeGeographies = searchParams.get('geography')?.split(',') || []
+    const activeCompanies = searchParams.get('company')?.split(',') || []
+    const activeDecades = searchParams.get('decade')?.split(',') || []
 
-    const numActiveFilters = activeAuthorities.length + activeIndustries.length + activeStatuses.length + activeTags.length;
+    const numActiveFilters = activeAuthorities.length + activeIndustries.length + activeStatuses.length + activeTags.length + activeGeographies.length + activeCompanies.length + activeDecades.length;
 
     const handleFilterChange = (key: string, value: string, checked: boolean, currentList: string[]) => {
         let newList = [...currentList]
@@ -93,9 +99,12 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: S
                                     p.delete('industry')
                                     p.delete('status')
                                     p.delete('caseType')
+                                    p.delete('geography')
+                                    p.delete('company')
+                                    p.delete('decade')
                                     router.replace(`/?${p.toString()}`)
                                 }}
-                                className="text-[10px] text-primary-blue uppercase font-bold hover:underline"
+                                className="text-[10px] bg-blue-50 text-primary-blue hover:bg-blue-100 uppercase font-bold px-3 py-1.5 rounded-md transition-all active:scale-95 active:bg-blue-200 shadow-sm hover:shadow inline-block"
                             >
                                 {t.sidebar.reset}
                             </button>
@@ -117,31 +126,66 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: S
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.authority}</h3>
                         <div className="space-y-3 text-sm text-dark-slate/80">
                             {AUTHORITIES.map((auth) => (
-                                <label key={auth} className="flex items-center gap-3 cursor-pointer hover:text-primary-blue transition-colors group">
-                                    <input
-                                        type="checkbox"
-                                        checked={activeAuthorities.includes(auth)}
-                                        onChange={(e) => handleFilterChange('authority', auth, e.target.checked, activeAuthorities)}
-                                        className="w-4.5 h-4.5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue bg-gray-50 cursor-pointer transition-colors"
-                                    />
-                                    <span className="group-hover:translate-x-0.5 transition-transform select-none">{auth}</span>
+                                <label key={auth} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeAuthorities.includes(auth)}
+                                            onChange={(e) => handleFilterChange('authority', auth, e.target.checked, activeAuthorities)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{auth}</span>
                                 </label>
                             ))}
                         </div>
                     </div>
 
                     <div>
-                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.industry}</h3>
+                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.geography}</h3>
                         <div className="space-y-3 text-sm text-dark-slate/80">
-                            {INDUSTRIES.map((industry) => (
-                                <label key={industry} className="flex items-center gap-3 cursor-pointer hover:text-primary-blue transition-colors group">
-                                    <input
-                                        type="checkbox"
-                                        checked={activeIndustries.includes(industry)}
-                                        onChange={(e) => handleFilterChange('industry', industry, e.target.checked, activeIndustries)}
-                                        className="w-4.5 h-4.5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue bg-gray-50 cursor-pointer transition-colors"
-                                    />
-                                    <span className="group-hover:translate-x-0.5 transition-transform select-none">{industry}</span>
+                            {GEOGRAPHIES.map((geo) => (
+                                <label key={geo} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeGeographies.includes(geo)}
+                                            onChange={(e) => handleFilterChange('geography', geo, e.target.checked, activeGeographies)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{geo}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.decade}</h3>
+                        <div className="space-y-3 text-sm text-dark-slate/80">
+                            {DECADES.map((decade) => (
+                                <label key={decade} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeDecades.includes(decade)}
+                                            onChange={(e) => handleFilterChange('decade', decade, e.target.checked, activeDecades)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{decade}</span>
                                 </label>
                             ))}
                         </div>
@@ -151,14 +195,20 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: S
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.status}</h3>
                         <div className="space-y-3 text-sm text-dark-slate/80">
                             {STATUSES.map((status) => (
-                                <label key={status} className="flex items-center gap-3 cursor-pointer hover:text-primary-blue transition-colors group">
-                                    <input
-                                        type="checkbox"
-                                        checked={activeStatuses.includes(status)}
-                                        onChange={(e) => handleFilterChange('status', status, e.target.checked, activeStatuses)}
-                                        className="w-4.5 h-4.5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue bg-gray-50 cursor-pointer transition-colors"
-                                    />
-                                    <span className="group-hover:translate-x-0.5 transition-transform select-none">
+                                <label key={status} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeStatuses.includes(status)}
+                                            onChange={(e) => handleFilterChange('status', status, e.target.checked, activeStatuses)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">
                                         {t.sidebar.status_options[status.toLowerCase() as keyof typeof t.sidebar.status_options] || status}
                                     </span>
                                 </label>
@@ -170,14 +220,66 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: S
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.tags}</h3>
                         <div className="space-y-3 text-sm text-dark-slate/80">
                             {TAGS.map((tag) => (
-                                <label key={tag} className="flex items-center gap-3 cursor-pointer hover:text-primary-blue transition-colors group">
-                                    <input
-                                        type="checkbox"
-                                        checked={activeTags.includes(tag)}
-                                        onChange={(e) => handleFilterChange('caseType', tag, e.target.checked, activeTags)}
-                                        className="w-4.5 h-4.5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue bg-gray-50 cursor-pointer transition-colors"
-                                    />
-                                    <span className="group-hover:translate-x-0.5 transition-transform select-none">{tag}</span>
+                                <label key={tag} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeTags.includes(tag)}
+                                            onChange={(e) => handleFilterChange('caseType', tag, e.target.checked, activeTags)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{tag}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.industry}</h3>
+                        <div className="space-y-3 text-sm text-dark-slate/80">
+                            {INDUSTRIES.map((industry) => (
+                                <label key={industry} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeIndustries.includes(industry)}
+                                            onChange={(e) => handleFilterChange('industry', industry, e.target.checked, activeIndustries)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{industry}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.company}</h3>
+                        <div className="space-y-3 text-sm text-dark-slate/80">
+                            {COMPANIES.map((company) => (
+                                <label key={company} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeCompanies.includes(company)}
+                                            onChange={(e) => handleFilterChange('company', company, e.target.checked, activeCompanies)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{company}</span>
                                 </label>
                             ))}
                         </div>
@@ -188,7 +290,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS }: S
                 <div className="md:hidden border-t border-light-gray p-4 bg-white sticky bottom-0 z-10 w-full shadow-up">
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="w-full bg-dark-slate text-white py-3 rounded-lg font-bold shadow hover:bg-black transition-colors"
+                        className="w-full bg-dark-slate text-white py-3 rounded-lg font-bold shadow-md hover:shadow-lg hover:bg-black transition-all duration-200 active:scale-95"
                     >
                         {numActiveFilters > 0 ? t.sidebar.see_results_count.replace('{{count}}', numActiveFilters.toString()) : t.sidebar.see_results}
                     </button>

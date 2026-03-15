@@ -1,7 +1,10 @@
 'use client'
 
 import { useLanguage } from '@/i18n/LanguageContext'
-import { addUserManually, importUsersCSV, approveUser, rejectUser, updateUserRole, deleteActiveUser } from './actions'
+import { addUserManually, importUsersCSV, approveUser, rejectUser, updateUserRole, deleteActiveUser, addCaseManually, editCaseAction, deleteCaseAction } from './actions'
+import CustomSelect from '@/components/ui/CustomSelect'
+import EditCaseModal from '@/components/EditCaseModal'
+import { useState } from 'react'
 
 type UserData = {
     id: string;
@@ -11,15 +14,26 @@ type UserData = {
     created_at: string;
 }
 
+type CompactCase = {
+    id: string;
+    title: string;
+    authority: string;
+    status: string;
+    created_at: string;
+}
+
 export default function AdminUI({
     activeUsers,
-    pendingUsers
+    pendingUsers,
+    casesList
 }: {
     activeUsers: UserData[],
-    pendingUsers: UserData[]
+    pendingUsers: UserData[],
+    casesList: CompactCase[]
 }) {
     const { t } = useLanguage()
     const tAdmin = t.admin_panel
+    const [editingCaseId, setEditingCaseId] = useState<string | null>(null)
 
     return (
         <div className="max-w-7xl mx-auto space-y-8">
@@ -54,10 +68,14 @@ export default function AdminUI({
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-dark-slate mb-1">{tAdmin.role_label}</label>
-                            <select name="role" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none">
-                                <option value="Reader">{tAdmin.role_reader}</option>
-                                <option value="Admin">{tAdmin.role_admin}</option>
-                            </select>
+                            <CustomSelect
+                                name="role"
+                                defaultValue="Reader"
+                                options={[
+                                    { value: 'Reader', label: tAdmin.role_reader },
+                                    { value: 'Admin', label: tAdmin.role_admin }
+                                ]}
+                            />
                         </div>
                         <button type="submit" className="w-full bg-primary-blue text-white py-2 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity">
                             {tAdmin.btn_add_user}
@@ -154,15 +172,18 @@ export default function AdminUI({
                                     <td className="px-6 py-4">
                                         <form action={updateUserRole} className="flex items-center gap-2">
                                             <input type="hidden" name="userId" value={user.id} />
-                                            <select
-                                                name="role"
-                                                defaultValue={user.role}
-                                                className={`text-xs font-medium px-2 py-1 rounded border outline-none cursor-pointer ${user.role === 'Admin' ? 'bg-primary-blue/10 text-primary-blue border-primary-blue/20' : 'bg-gray-100 text-dark-slate border-gray-200'}`}
-                                            >
-                                                <option value="Reader">Reader</option>
-                                                <option value="Admin">Admin</option>
-                                            </select>
-                                            <button type="submit" className="text-xs bg-dark-slate text-white px-3 py-1.5 rounded hover:opacity-90 font-semibold transition-opacity tracking-wide">
+                                            <div className="w-28">
+                                                <CustomSelect
+                                                    name="role"
+                                                    defaultValue={user.role}
+                                                    options={[
+                                                        { value: 'Reader', label: 'Reader' },
+                                                        { value: 'Admin', label: 'Admin' }
+                                                    ]}
+                                                    className={user.role === 'Admin' ? '[&>button]:bg-primary-blue/10 [&>button]:text-primary-blue [&>button]:border-primary-blue/20' : '[&>button]:bg-gray-100 [&>button]:border-gray-200'}
+                                                />
+                                            </div>
+                                            <button type="submit" className="text-xs bg-dark-slate text-white px-3 py-1.5 rounded hover:opacity-90 font-semibold transition-opacity tracking-wide h-[42px]">
                                                 {tAdmin.btn_save}
                                             </button>
                                         </form>
@@ -184,6 +205,71 @@ export default function AdminUI({
                     </table>
                 </div>
             </div>
+
+            {/* Nova Tabela de Casos */}
+            <div className="bg-white border border-light-gray rounded-xl shadow-sm overflow-hidden mt-8">
+                <div className="px-6 py-4 border-b border-light-gray flex justify-between items-center">
+                    <h3 className="font-heading font-bold text-dark-slate">Gerir Casos Registados ({casesList.length})</h3>
+                </div>
+                <div className="overflow-x-auto max-h-[500px]">
+                    <table className="min-w-full divide-y divide-light-gray text-sm">
+                        <thead className="bg-gray-50 sticky top-0 z-10">
+                            <tr>
+                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">Título do Caso</th>
+                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">Autoridade</th>
+                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">Status</th>
+                                <th className="px-6 py-3 text-right font-semibold text-dark-slate">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-light-gray bg-white">
+                            {casesList.map((c) => (
+                                <tr key={c.id} className="hover:bg-gray-50 transition-colors">
+                                    <td className="px-6 py-3 font-medium text-dark-slate max-w-[300px] truncate" title={c.title}>
+                                        {c.title}
+                                    </td>
+                                    <td className="px-6 py-3 text-dark-slate/70">
+                                        {c.authority}
+                                    </td>
+                                    <td className="px-6 py-3">
+                                        <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded border inline-block ${c.status.toLowerCase().includes('closed') || c.status.toLowerCase().includes('decidido')
+                                            ? 'bg-green-50 text-green-700 border-green-200'
+                                            : c.status.toLowerCase().includes('appeal') || c.status.toLowerCase().includes('investigation')
+                                                ? 'bg-amber-50 text-amber-700 border-amber-200'
+                                                : 'bg-slate-50 text-dark-slate border-light-gray'
+                                            }`}>
+                                            {c.status}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-3 text-right">
+                                        <div className="flex items-center justify-end gap-2">
+                                            <button 
+                                                onClick={() => setEditingCaseId(c.id)}
+                                                className="text-xs text-primary-blue hover:text-blue-800 font-semibold transition-colors bg-blue-50/50 hover:bg-blue-100 px-3 py-1.5 rounded"
+                                            >
+                                                Editar
+                                            </button>
+                                            <form action={deleteCaseAction} onSubmit={(e) => { if (!confirm('Tens a certeza que queres eliminar este caso? Não pode ser revertido.')) e.preventDefault() }}>
+                                                <input type="hidden" name="caseId" value={c.id} />
+                                                <button type="submit" className="text-xs text-red-600 hover:text-red-800 font-semibold transition-colors bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded">
+                                                    Apagar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Modal de Edição */}
+            {editingCaseId && (
+                <EditCaseModal 
+                    caseId={editingCaseId} 
+                    onClose={() => setEditingCaseId(null)} 
+                />
+            )}
 
             {/* O formulário de "Novo Caso de Estudo" chama funções on-server mas usa ações no Client. Nós simplificamos. */}
             {/* NOTE: To keep server actions working inside client components properly, NextJS handles forms with \`action={ServerAction}\` natively now. */}
@@ -218,27 +304,60 @@ export default function AdminUI({
 
                     <div>
                         <label className="block text-sm font-medium text-dark-slate mb-1">{tAdmin.authority_label}</label>
-                        <select name="authority" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none">
-                            <option value="AdC">AdC (Portugal)</option>
-                            <option value="Comissão Europeia">Comissão Europeia</option>
-                            <option value="DOJ">DOJ (EUA)</option>
-                            <option value="FTC">FTC (EUA)</option>
-                            <option value="CMA">CMA (Reino Unido)</option>
-                        </select>
+                        <CustomSelect
+                            name="authority"
+                            defaultValue="AdC"
+                            options={[
+                                { value: 'AdC', label: 'AdC (Portugal)' },
+                                { value: 'Comissão Europeia', label: 'Comissão Europeia' },
+                                { value: 'DOJ', label: 'DOJ (EUA)' },
+                                { value: 'FTC', label: 'FTC (EUA)' },
+                                { value: 'CMA', label: 'CMA (Reino Unido)' }
+                            ]}
+                        />
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-dark-slate mb-1">{tAdmin.status_label}</label>
-                        <select name="status" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none">
-                            <option value="Em Investigação">{tAdmin.status_investigation}</option>
-                            <option value="Decidido">{tAdmin.status_decided}</option>
-                            <option value="Em Recurso">{tAdmin.status_appeal}</option>
-                        </select>
+                        <CustomSelect
+                            name="status"
+                            defaultValue="Em Investigação"
+                            options={[
+                                { value: 'Em Investigação', label: tAdmin.status_investigation },
+                                { value: 'Decidido', label: tAdmin.status_decided },
+                                { value: 'Em Recurso', label: tAdmin.status_appeal }
+                            ]}
+                        />
                     </div>
 
                     <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-dark-slate mb-1">{tAdmin.industry_label}</label>
-                        <input name="industry" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder={tAdmin.industry_placeholder} />
+                        <label className="block text-sm font-medium text-dark-slate mb-1">{tAdmin.industry_label || 'Industry'}</label>
+                        <input name="industry" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder={tAdmin.industry_placeholder || 'Tecnologia'} />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Geography</label>
+                        <input name="geography" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="e.g. EU, US" />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Tags (Case Types)</label>
+                        <input name="tags" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="Cartel, Dominance" />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Decision Date</label>
+                        <input name="decision_date" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="e.g. 2026-03 or Sept 2023" />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Start Date</label>
+                        <input name="start_date" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="e.g. 2020" />
+                    </div>
+
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-dark-slate mb-1">Fine Amount</label>
+                        <input name="fine_amount" type="text" className="w-full px-3 py-2 border border-light-gray rounded-md focus:ring-1 focus:ring-primary-blue focus:outline-none" placeholder="Ex: €2.4B" />
                     </div>
 
                     <div className="md:col-span-2 border-t border-light-gray pt-6 mt-2">

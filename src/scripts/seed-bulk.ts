@@ -3,9 +3,12 @@ import fs from 'fs';
 import path from 'path';
 import Papa from 'papaparse';
 import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
 dotenv.config({ path: '.env.local' });
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
 // Define a estrutura desejada baseada no nosso schema (semelhante ao test-ai.ts)
 type CaseExtraction = {
@@ -39,7 +42,7 @@ Expected JSON structure:
   "authority": "Agency (e.g., EC, FTC, CMA, DOJ, Courts)",
   "status": "Current status (e.g., Open, Closed, Blocked, Fined)",
   "industry": "Broad industry sector (e.g., Technology, Healthcare, Entertainment)",
-  "summary": "Must be AT LEAST 4 to 6 long, comprehensive paragraphs recounting the case formatted in RICH MARKDOWN. You MUST use Markdown Headings (e.g. ### Background, ### Theory of Harm, ### Outcome), bulleted lists, and **bold text** to make it extremely engaging and readable. If the case involves complex timelines, structural market changes, or financial transfers, you MUST include exactly ONE mermaid diagram using standard Markdown syntax (\`\`\`mermaid ... \`\`\`) to visually explain the relationships or timelines. Be extremely thorough, elegant, and legally sound. DO NOT write short summaries.",
+  "summary": "Must be AT LEAST 10 long, comprehensive paragraphs recounting the case formatted in RICH MARKDOWN. The FIRST paragraph MUST be a short, direct summary of the entire case. You MUST use Markdown Headings (e.g. ### Background, ### Theory of Harm, ### Outcome), bulleted lists, and **bold text** to make it extremely engaging and readable. If the case involves complex timelines, structural market changes, or financial transfers, you MUST include exactly ONE visually appealing and complex SVG diagram using standard Markdown syntax (\`\`\`svg\\n<svg>...</svg>\\n\`\`\`) to visually explain the relationships or timelines. DO NOT output a mermaid diagram, it MUST be raw SVG. CRITICAL RULE: YOU MUST BE 100% FACTUAL. DO NOT HALLUCINATE ANY DATES, COMPANIES, OR FINES. If you do not know a detail for a fact, skip it. You MUST cite your claims implicitly or explicitly based on real-world knowledge. Be extremely thorough, elegant, and legally sound. DO NOT write short summaries.",
   "tags": ["Array", "Of", "Relevant", "Keywords", "like Merger Control, Article 102, Cartel"],
   "parties_involved": ["Array", "Of", "Companies", "Involved"],
   "fine_amount": "Total fine amount as a string (e.g., '€2.42 billion') or null if none.",
@@ -99,6 +102,21 @@ async function runBulkImport(csvFilePath: string, outputJsonPath: string) {
         process.exit(1);
     }
 
+    // --- 1. Fetch existing titles from Supabase ---
+    console.log('\n🔍 A verificar títulos já existentes no Supabase...');
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const { data: existingCases, error: fetchError } = await supabase
+        .from('Cases')
+        .select('title');
+    if (fetchError) {
+        console.error('❌ Erro ao buscar casos existentes:', fetchError);
+        process.exit(1);
+    }
+    const existingTitles = new Set(
+        (existingCases || []).map((c: any) => c.title.trim().toLowerCase())
+    );
+    console.log(`   ✅ ${existingTitles.size} títulos já existem na base de dados.`);
+
     console.log(`\n\u25b6 Iniciando Bulk Data Processing (${csvFilePath})...`);
     const fileContent = fs.readFileSync(csvFilePath, 'utf8');
 
@@ -107,38 +125,50 @@ async function runBulkImport(csvFilePath: string, outputJsonPath: string) {
         header: true,
         skipEmptyLines: true,
         complete: async (results) => {
-            const rows = results.data;
-            console.log(`\u25b6 Foram encontradas ${rows.length} linhas para processar.`);
+            const rows = results.data as any[];
+            console.log(`\u25b6 Foram encontradas ${rows.length} linhas no CSV.`);
+
+            // --- 2. Filter to only rows NOT already in Supabase ---
+            const newRows = rows.filter(row => {
+                const t = (row.title || '').trim().toLowerCase();
+                return t && !existingTitles.has(t);
+            });
+
+            console.log(`\u25b6 ${newRows.length} linhas novas encontradas para processar.`);
+
+            if (newRows.length === 0) {
+                console.log('\n✅ Nenhum caso novo para adicionar. O CSV está totalmente importado.');
+                return;
+            }
+
+            // Limit batch to 10 at a time to control AI costs
+            const targetRows = newRows.slice(0, 10);
+            const limit = targetRows.length;
+            console.log(`\u25b6 Vamos processar ${limit} novos casos nesta corrida.`);
 
             const processedCases: CaseExtraction[] = [];
 
-            // Alteração Pedida: Limitar de forma rígida a um batch experimental de 50 casos.
-            const limit = Math.min(rows.length, 50);
-            console.log(`\u25b6 Vamos processar apenas as primeiras ${limit} linhas (Controlo de Faturação AI).`);
-
-            // Processa uma linha de cada vez (pode ser iterado com Promise.all para ser mais rápido noutra fase,
-            // mas sequencial é mais seguro para não rebentar rate limits com grandes lotes)
             for (let i = 0; i < limit; i++) {
-                const row = rows[i] as any;
+                const row = targetRows[i] as any;
                 console.log(`\n[\u23f3 ${i + 1}/${limit}] A processar: ${row.title || 'Linha ' + i} ...`);
 
                 const extractedData = await processRowWithAI(row);
 
                 if (extractedData) {
                     processedCases.push(extractedData);
-                    console.log(`[\u2705 ${i + 1}/${rows.length}] Sucesso! Extraídas ${extractedData.tags.length} tags: ${extractedData.tags.join(', ')}`);
+                    console.log(`[\u2705 ${i + 1}/${limit}] Sucesso! Extraídas ${extractedData.tags.length} tags: ${extractedData.tags.join(', ')}`);
                 }
 
-                // Guarda progressivamente (útil se o script falhar a meio de 10 mil linhas)
+                // Guarda progressivamente
                 fs.writeFileSync(outputJsonPath, JSON.stringify(processedCases, null, 2));
             }
 
-            console.log(`\n\u2728 Bulk Import Concluído! ${processedCases.length}/${rows.length} casos guardados em: ${outputJsonPath}`);
+            console.log(`\n\u2728 Bulk Import Concluído! ${processedCases.length}/${limit} casos guardados em: ${outputJsonPath}`);
         }
     });
 }
 
-// Executar script definindo os caminhos corretos (podem depois vir por argumentos de linha de comandos)
+// Executar script definindo os caminhos corretos
 const inputCsv = path.join(process.cwd(), 'data', 'sample-50-real-cases.csv');
 const outputJson = path.join(process.cwd(), 'data', 'processed_cases.json');
 

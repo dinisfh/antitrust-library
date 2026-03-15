@@ -8,6 +8,7 @@ export function HeroText() {
         <div>
             <h2 className="font-heading font-bold text-2xl text-dark-slate mb-1">{t.home.hero_title}</h2>
             <p className="text-sm text-dark-slate/70">{t.home.hero_subtitle}</p>
+            <p className="text-xs text-dark-slate/50 mt-2">Last update: March 2026</p>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 export const en = {
     header: {
-        library: "Case Library",
-        search_placeholder: "Search for a company, authority, or concept...",
+        library: "Antitrust Case Library",
+        search_placeholder: "Search cases, companies, authorities or concepts…",
         login: "Log In",
         logout: "Log Out"
     },
@@ -9,9 +9,12 @@ export const en = {
         filters: "Filters",
         reset: "Clear",
         authority: "Authority",
+        geography: "Geography",
+        company: "Company",
+        decade: "Decade",
         industry: "Industry",
         status: "Status",
-        tags: "Case Tags",
+        tags: "Case Type",
         status_options: {
             open: "Open",
             closed: "Closed",
@@ -24,11 +27,15 @@ export const en = {
         see_results_count: "See Results ({{count}} Filters)"
     },
     home: {
-        hero_title: "Antitrust Library",
-        hero_subtitle: "Continuous research library of Antitrust cases and key tech regulations.",
+        hero_title: "Antitrust Case Library",
+        hero_subtitle: "A research library of landmark antitrust cases",
         no_results: "No cases found matching the criteria.",
         no_results_desc: "Try adjusting or clearing your filters.",
-        load_more: "Load More Cases"
+        load_more: "Load More Cases",
+        sort_by: "Sort by",
+        sort_recent: "Most recent",
+        sort_cited: "Most cited",
+        sort_alpha: "Alphabetical"
     },
     case_card: {
         no_date: "No Date",

@@ -184,3 +184,69 @@ export async function deleteActiveUser(formData: FormData) {
 
     revalidatePath('/admin')
 }
+
+export async function deleteCaseAction(formData: FormData) {
+    const caseId = formData.get('caseId') as string
+    if (!caseId) return
+
+    const admin = createAdminClient()
+    await admin.from('Cases').delete().eq('id', caseId)
+
+    revalidatePath('/')
+    revalidatePath('/admin')
+}
+
+export async function editCaseAction(formData: FormData) {
+    const caseId = formData.get('caseId') as string
+    if (!caseId) return;
+
+    const title = formData.get('title') as string
+    const summary = formData.get('summary') as string
+    const authority = formData.get('authority') as string
+    const status = formData.get('status') as string
+    const rawIndustry = formData.get('industry') as string
+    const rawSources = formData.get('sources') as string
+    const geography = formData.get('geography') as string
+    const decision_date = formData.get('decision_date') as string
+    const start_date = formData.get('start_date') as string
+    const fine_amount = formData.get('fine_amount') as string
+    const rawTags = formData.get('tags') as string
+
+    const supabase = createAdminClient()
+    const industryValue = rawIndustry ? rawIndustry.trim() : 'Genérico'
+
+    let parsedLinks: string[] = []
+    if (rawSources) {
+        parsedLinks = rawSources
+            .split('\n')
+            .map(s => s.trim())
+            .filter(s => s.startsWith('http'))
+    }
+
+    let parsedTags: string[] = []
+    if (rawTags) {
+        parsedTags = rawTags.split(',').map(t => t.trim()).filter(Boolean)
+    }
+
+    const { error: dbError } = await supabase.from('Cases').update({
+        title,
+        summary,
+        authority,
+        status,
+        industry: industryValue,
+        tags: parsedTags,
+        decision_date: decision_date || null,
+        start_date: start_date || null,
+        links: parsedLinks,
+        fine_amount: fine_amount || null,
+        geography: geography || null
+    }).eq('id', caseId)
+
+    if (dbError) {
+        console.error('Error updating case data:', dbError)
+        return;
+    }
+
+    revalidatePath('/')
+    revalidatePath('/admin')
+}

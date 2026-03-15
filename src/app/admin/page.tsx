@@ -18,6 +18,20 @@ async function getUsers() {
     return data || []
 }
 
+async function getCasesForAdmin() {
+    const supabase = createAdminClient()
+    const { data, error } = await supabase
+        .from('Cases')
+        .select('id, title, authority, status, created_at')
+        .order('created_at', { ascending: false })
+
+    if (error) {
+        console.error('Error fetching cases for admin:', error)
+        return []
+    }
+    return data || []
+}
+
 export default async function AdminPage() {
     const supabase = await createClient()
 
@@ -43,7 +57,9 @@ export default async function AdminPage() {
     const activeUsers = usersList.filter((u: any) => u.status === 'Active')
     const pendingUsers = usersList.filter((u: any) => u.status === 'Pending')
 
+    const casesList = await getCasesForAdmin()
+
     return (
-        <AdminUI activeUsers={activeUsers} pendingUsers={pendingUsers} />
+        <AdminUI activeUsers={activeUsers} pendingUsers={pendingUsers} casesList={casesList} />
     )
 }

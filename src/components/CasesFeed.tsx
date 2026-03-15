@@ -1,29 +1,47 @@
 import { getCases } from '@/app/actions'
 import CaseCard from '@/components/CaseCard'
 import { NoResultsText } from '@/components/HomeText'
+import SortDropdown from './SortDropdown'
 
 export async function CasesFeed({
     query,
     sectors,
     authorities,
     statuses,
-    caseTypes
+    caseTypes,
+    geographies,
+    companies,
+    decades,
+    sortBy
 }: {
     query: string
     sectors: string[]
     authorities: string[]
     statuses: string[]
     caseTypes: string[]
+    geographies: string[]
+    companies: string[]
+    decades: string[]
+    sortBy: string
 }) {
-    const casesMatch = await getCases(query, sectors, authorities, statuses, caseTypes)
+    const casesMatch = await getCases(query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy)
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            {casesMatch.map((c) => (
-                <CaseCard key={c.id} data={c} />
-            ))}
+        <div className="space-y-4">
+            <div className="flex justify-between items-center text-sm">
+                <p className="font-medium text-dark-slate/60">Showing {casesMatch.length} cases</p>
+                
+                {/* O SortUI dropdown que interage com a navegação do cliente e manipula searchParams será incluído do lado do cliente via um componente de Sorting, ou podemos usar Next.js Link / Select form.
+                    Como é um server component, vamos colocar aqui uma versão simples se houver um client wrapper ou usar um componente separado */}
+                <SortDropdown currentSort={sortBy} />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {casesMatch.map((c) => (
+                    <CaseCard key={c.id} data={c} />
+                ))}
 
-            {casesMatch.length === 0 && <NoResultsText />}
+                {casesMatch.length === 0 && <NoResultsText />}
+            </div>
         </div>
     )
 }

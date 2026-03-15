@@ -2,7 +2,7 @@ import { getUniqueFilters } from '@/app/actions'
 import SidebarUI from './SidebarUI'
 
 export default async function Sidebar() {
-    const { authorities, industries, statuses, tags } = await getUniqueFilters()
+    const { authorities, industries, statuses, tags, geographies, companies, decades } = await getUniqueFilters()
 
     return (
         <SidebarUI
@@ -10,6 +10,9 @@ export default async function Sidebar() {
             INDUSTRIES={industries}
             STATUSES={statuses}
             TAGS={tags}
+            GEOGRAPHIES={geographies}
+            COMPANIES={companies}
+            DECADES={decades}
         />
     )
 }

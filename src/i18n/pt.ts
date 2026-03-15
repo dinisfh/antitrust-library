@@ -2,8 +2,8 @@ import { TranslationsType } from './en';
 
 export const pt: TranslationsType = {
     header: {
-        library: "Biblioteca de Casos",
-        search_placeholder: "Pesquisar empresa, autoridade, ou conceito...",
+        library: "Antitrust Case Library",
+        search_placeholder: "Pesquisar casos, empresas, autoridades ou conceitos...",
         login: "Entrar",
         logout: "Terminar Sessão"
     },
@@ -11,9 +11,12 @@ export const pt: TranslationsType = {
         filters: "Filtros",
         reset: "Limpar",
         authority: "Autoridade",
+        geography: "Geografia",
+        company: "Empresa",
+        decade: "Década",
         industry: "Indústria",
         status: "Estado",
-        tags: "Tags de Caso",
+        tags: "Tipo de Caso",
         status_options: {
             open: "Aberto",
             closed: "Fechado",
@@ -26,11 +29,15 @@ export const pt: TranslationsType = {
         see_results_count: "Ver Resultados ({{count}} Filtros)"
     },
     home: {
-        hero_title: "Antitrust Library",
-        hero_subtitle: "Biblioteca de pesquisa e consulta contínua de casos Antitrust.",
+        hero_title: "Antitrust Case Library",
+        hero_subtitle: "Biblioteca de casos antitrust",
         no_results: "Nenhum caso encontrado para os critérios.",
         no_results_desc: "Tente ajustar ou remover os filtros aplicados.",
-        load_more: "Carregar Mais Casos"
+        load_more: "Carregar Mais Casos",
+        sort_by: "Ordenar por",
+        sort_recent: "Mais recentes",
+        sort_cited: "Mais citados",
+        sort_alpha: "Ordem alfabética"
     },
     case_card: {
         no_date: "Sem Data",

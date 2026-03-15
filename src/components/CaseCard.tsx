@@ -24,17 +24,26 @@ export default function CaseCard({ data }: { data: CaseMatch }) {
 
     // Datas apenas com Mês extenso e Ano para poupar espaço
     let displayDate = t.case_card.no_date;
-    if (data.decision_date) {
+    
+    // Helper para formatar
+    const formatDateStr = (dateStr: string) => {
         try {
-            const dateObj = new Date(data.decision_date);
+            const dateObj = new Date(dateStr);
             if (!isNaN(dateObj.getTime())) {
                 const localeStr = lang === 'pt' ? 'pt-PT' : 'en-US';
-                displayDate = dateObj.toLocaleDateString(localeStr, { month: 'long', year: 'numeric' });
-            } else {
-                displayDate = data.decision_date;
+                return dateObj.toLocaleDateString(localeStr, { month: 'short', year: 'numeric' });
             }
-        } catch {
-            displayDate = data.decision_date;
+        } catch {}
+        return dateStr;
+    }
+
+    if (data.start_date || data.decision_date) {
+        if (data.start_date && data.decision_date) {
+            displayDate = `${formatDateStr(data.start_date)} — ${formatDateStr(data.decision_date)}`;
+        } else if (data.decision_date) {
+            displayDate = `Decision: ${formatDateStr(data.decision_date)}`;
+        } else if (data.start_date) {
+            displayDate = `Start: ${formatDateStr(data.start_date)}`;
         }
     }
 
@@ -59,9 +68,7 @@ export default function CaseCard({ data }: { data: CaseMatch }) {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-5">
-                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 bg-blue-50 text-primary-blue rounded border border-blue-100 truncate max-w-[120px]">
-                        {data.industry}
-                    </span>
+                    {/* Exclude Industry pill optionally if keeping strict to the requested format, but we'll leave it as requested in previous format or changed slightly */}
 
                     {data.tags && data.tags.slice(0, 2).map((tag, i) => (
                         <span key={`tag-${i}`} className="text-[10px] uppercase font-bold px-2 py-0.5 bg-slate-50 text-gray-600 rounded border border-slate-200 truncate max-w-[120px]">
@@ -71,10 +78,11 @@ export default function CaseCard({ data }: { data: CaseMatch }) {
 
                     <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded border ${data.status.toLowerCase().includes('closed') || data.status.toLowerCase().includes('decidido') || data.status.toLowerCase().includes('fined')
                         ? 'bg-green-50 text-green-700 border-green-200'
-                        : data.status.toLowerCase().includes('appeal')
+                        : data.status.toLowerCase().includes('appeal') || data.status.toLowerCase().includes('open') || data.status.toLowerCase().includes('investigation')
                             ? 'bg-amber-50 text-amber-700 border-amber-200'
                             : 'bg-slate-50 text-dark-slate border-light-gray'
                         }`}>
+                        {data.status.toLowerCase().includes('closed') || data.status.toLowerCase().includes('decidido') || data.status.toLowerCase().includes('fined') ? '🟢 ' : '🟡 '}
                         {t.sidebar.status_options[data.status.toLowerCase() as keyof typeof t.sidebar.status_options] || data.status}
                     </span>
 

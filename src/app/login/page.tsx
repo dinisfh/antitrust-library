@@ -26,13 +26,13 @@ export default function LoginPage() {
                 <div className="bg-white p-2 shadow-sm sm:rounded-xl border border-light-gray flex gap-2 mb-4">
                     <button
                         onClick={() => setIsRegistering(false)}
-                        className={`flex-1 text-sm font-semibold rounded-lg py-2 transition-colors ${!isRegistering ? 'bg-primary-blue text-white shadow-sm' : 'text-dark-slate/60 hover:text-dark-slate hover:bg-gray-50'}`}
+                        className={`flex-1 text-sm font-semibold rounded-lg py-2 transition-all duration-200 active:scale-95 active:shadow-inner ${!isRegistering ? 'bg-primary-blue text-white shadow-md shadow-primary-blue/30 hover:shadow-lg' : 'text-dark-slate/60 hover:text-dark-slate hover:bg-gray-50'}`}
                     >
                         {t.login_page?.existing_login || 'Login Existente'}
                     </button>
                     <button
                         onClick={() => setIsRegistering(true)}
-                        className={`flex-1 text-sm font-semibold rounded-lg py-2 transition-colors ${isRegistering ? 'bg-primary-blue text-white shadow-sm' : 'text-dark-slate/60 hover:text-dark-slate hover:bg-gray-50'}`}
+                        className={`flex-1 text-sm font-semibold rounded-lg py-2 transition-all duration-200 active:scale-95 active:shadow-inner ${isRegistering ? 'bg-primary-blue text-white shadow-md shadow-primary-blue/30 hover:shadow-lg' : 'text-dark-slate/60 hover:text-dark-slate hover:bg-gray-50'}`}
                     >
                         {t.login_page?.request_access_tab || 'Pedir Acesso'}
                     </button>
@@ -81,7 +81,7 @@ export default function LoginPage() {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-dark-slate px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue transition-colors"
+                                className="flex w-full justify-center rounded-md bg-dark-slate px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-md shadow-dark-slate/20 hover:shadow-lg hover:bg-primary-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-blue transition-all duration-200 active:scale-95 active:shadow-inner"
                             >
                                 {isRegistering ? (t.login_page?.btn_request_access || 'Pedir Acesso à Plataforma') : (t.login_page?.btn_login || 'Entrar na Plataforma')}
                             </button>
