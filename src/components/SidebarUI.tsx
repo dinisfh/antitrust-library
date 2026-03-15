@@ -81,7 +81,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
             )}
 
             {/* Main Sidebar Component */}
-            <aside className={`fixed md:static inset-y-0 left-0 z-50 w-72 md:w-64 bg-white border-r border-light-gray h-full flex flex-col transition-all duration-300 transform ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0 md:shadow-none'} ${isPending ? 'opacity-70 pointer-events-none' : 'opacity-100'}`}>
+            <aside className={`fixed md:sticky top-0 left-0 z-50 w-72 md:w-64 bg-white border-r border-light-gray h-screen flex flex-col transition-all duration-300 transform ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0 md:shadow-none'} ${isPending ? 'opacity-70 pointer-events-none' : 'opacity-100'}`}>
 
                 {/* Header / Actions section */}
                 <div className="p-4 border-b border-light-gray flex items-center justify-between bg-slate-50 md:bg-white">
@@ -124,7 +124,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
                 <div className="flex-1 overflow-y-auto p-5 space-y-8 pb-24 md:pb-4">
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.authority}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
                             {AUTHORITIES.map((auth) => (
                                 <label key={auth} className="flex items-center gap-3 cursor-pointer group">
                                     <div className="relative flex items-center justify-center">
@@ -147,7 +147,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
 
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.geography}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
                             {GEOGRAPHIES.map((geo) => (
                                 <label key={geo} className="flex items-center gap-3 cursor-pointer group">
                                     <div className="relative flex items-center justify-center">
@@ -170,7 +170,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
 
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.decade}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
                             {DECADES.map((decade) => (
                                 <label key={decade} className="flex items-center gap-3 cursor-pointer group">
                                     <div className="relative flex items-center justify-center">
@@ -193,7 +193,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
 
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.status}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
                             {STATUSES.map((status) => (
                                 <label key={status} className="flex items-center gap-3 cursor-pointer group">
                                     <div className="relative flex items-center justify-center">
@@ -218,7 +218,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
 
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.tags}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
                             {TAGS.map((tag) => (
                                 <label key={tag} className="flex items-center gap-3 cursor-pointer group">
                                     <div className="relative flex items-center justify-center">
@@ -241,7 +241,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
 
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.industry}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
                             {INDUSTRIES.map((industry) => (
                                 <label key={industry} className="flex items-center gap-3 cursor-pointer group">
                                     <div className="relative flex items-center justify-center">
@@ -264,22 +264,22 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
 
                     <div>
                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.company}</h3>
-                        <div className="space-y-3 text-sm text-dark-slate/80">
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-60 overflow-y-auto pr-1">
                             {COMPANIES.map((company) => (
-                                <label key={company} className="flex items-center gap-3 cursor-pointer group">
-                                    <div className="relative flex items-center justify-center">
+                                <label key={company} className="flex items-start gap-3 cursor-pointer group w-full">
+                                    <div className="relative flex items-center justify-center shrink-0 mt-0.5">
                                         <input
                                             type="checkbox"
                                             checked={activeCompanies.includes(company)}
                                             onChange={(e) => handleFilterChange('company', company, e.target.checked, activeCompanies)}
                                             className="peer sr-only"
                                         />
-                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200 shrink-0"></div>
                                         <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{company}</span>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none break-words flex-1 leading-tight min-w-0">{company}</span>
                                 </label>
                             ))}
                         </div>

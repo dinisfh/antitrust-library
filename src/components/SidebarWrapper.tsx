@@ -14,9 +14,9 @@ export default function SidebarWrapper({
     const showSidebar = pathname === '/';
 
     return (
-        <div className="flex flex-1 overflow-hidden relative w-full h-full">
+        <div className="flex w-full min-h-screen">
             {showSidebar && sidebar}
-            <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-gray-50/30">
+            <main className="flex-1 w-full min-w-0 p-6 md:p-8 bg-gray-50/30">
                 {children}
             </main>
         </div>

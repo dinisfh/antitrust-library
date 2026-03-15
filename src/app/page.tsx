@@ -15,6 +15,8 @@ export default async function Home(props: {
     company?: string
     decade?: string
     sortBy?: string
+    page?: string
+    limit?: string
   }>
 }) {
   const searchParams = await props.searchParams
@@ -28,6 +30,8 @@ export default async function Home(props: {
   const companies = searchParams?.company ? searchParams.company.split(',') : []
   const decades = searchParams?.decade ? searchParams.decade.split(',') : []
   const sortBy = searchParams?.sortBy || 'recent'
+  const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1
+  const limit = searchParams?.limit ? parseInt(searchParams.limit, 10) : 20
 
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -39,7 +43,7 @@ export default async function Home(props: {
     }
   }
 
-  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy })
+  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy, page, limit })
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
@@ -51,7 +55,7 @@ export default async function Home(props: {
         </Suspense>
       </div>
 
-      <Suspense key={suspenseKey} fallback={<CasesFeedSkeleton />}>
+      <Suspense key={suspenseKey} fallback={<CasesFeedSkeleton limit={limit} />}>
         <CasesFeed
           query={query}
           sectors={sectors}
@@ -62,6 +66,8 @@ export default async function Home(props: {
           companies={companies}
           decades={decades}
           sortBy={sortBy}
+          page={page}
+          limit={limit}
         />
       </Suspense>
     </div>

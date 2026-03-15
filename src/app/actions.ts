@@ -29,12 +29,14 @@ export async function getCases(
     geographyFilters?: string[],
     companyFilters?: string[],
     decadeFilters?: string[],
-    sortBy?: string
+    sortBy?: string,
+    page: number = 1,
+    limit: number = 20
 ) {
     const supabase = await createClient()
 
-    // Atualizado para buscar os novos campos e respeitar o limite
-    let query = supabase.from('Cases').select('id, title, summary, authority, geography, status, industry, tags, parties_involved, fine_amount, decision_date, start_date, citations_count, links, created_at')
+    // Atualizado para buscar os novos campos e respeitar o limite, e pedir a contagem otimizada
+    let query = supabase.from('Cases').select('id, title, summary, authority, geography, status, industry, tags, parties_involved, fine_amount, decision_date, start_date, citations_count, links, created_at', { count: 'exact' })
     
     // Configurar o Sorting principal
     if (sortBy === 'cited') {
@@ -46,7 +48,9 @@ export async function getCases(
         query = query.order('created_at', { ascending: false })
     }
 
-    query = query.limit(100)
+    const from = (page - 1) * limit
+    const to = from + limit - 1
+    query = query.range(from, to)
 
     // Full Text Search on Title or Summary
     if (searchQuery) {
@@ -93,14 +97,17 @@ export async function getCases(
         query = query.overlaps('tags', caseTypeFilters)
     }
 
-    const { data, error } = await query
+    const { data, error, count } = await query
 
     if (error) {
         console.error('Error fetching cases:', error)
-        return []
+        return { data: [], count: 0 }
     }
 
-    return data as CaseMatch[]
+    return { 
+        data: data as CaseMatch[], 
+        count: count || 0 
+    }
 }
 
 export async function getCaseById(id: string) {
