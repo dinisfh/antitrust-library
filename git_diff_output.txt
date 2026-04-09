@@ -1,0 +1,1269 @@
+diff --git a/data/processed_cases.json b/data/processed_cases.json
+index b851e94..ef6382a 100644
+--- a/data/processed_cases.json
++++ b/data/processed_cases.json
+@@ -1,296 +1,342 @@
+ [
+   {
+-    "title": "Federal Baseball Club v. National League",
+-    "authority": "U.S. Supreme Court",
++    "title": "FTC v. Microsoft",
++    "authority": "FTC",
+     "status": "Closed",
+-    "industry": "Sports",
+-    "summary": "Federal Baseball Club v. National League, 259 U.S. 200 (1922), is a landmark case in which the U.S. Supreme Court ruled that the Sherman Antitrust Act did not apply to Major League Baseball. This decision has had lasting implications for the regulation of sports leagues in the United States.\n\n### Background\nAfter the Federal League folded in 1915, most of the Federal League owners had been bought out by owners in the other major leagues, or had been compensated in other ways. For example, the owner of the St. Louis Terriers of the Federal League had been permitted to buy the St. Louis Browns of the American League. However, the owner of the Baltimore Terrapins had not been compensated and decided to take legal action.\n\n### Legal Action\nThe Baltimore Terrapins' owner sued the National League, the American League, and other defendants, including several Federal League officials, for conspiring to monopolize baseball by destroying the Federal League. This case raised significant questions about the application of antitrust laws to professional sports.\n\n### Court of Appeals\nIn 1919, the trial court found the defendants jointly liable and assessed damages of $80,000, which were tripled to $240,000 under the provisions of the Clayton Antitrust Act. However, the Court of Appeals reversed the trial verdict, ruling that baseball was not subject to the Sherman Act.\n\n### Supreme Court Decision\nThe case was then appealed to the U.S. Supreme Court. In a unanimous decision written by Justice Oliver Wendell Holmes, the Court upheld the Court of Appeals' ruling, stating that baseball was not considered interstate commerce and therefore not subject to federal antitrust laws.\n\n### Implications\nThis ruling effectively exempted Major League Baseball from antitrust scrutiny, allowing it to operate without the same regulatory pressures faced by other industries. The decision has been a point of contention and debate in legal and sports circles ever since.\n\n### Conclusion\nThe Federal Baseball Club v. National League case remains a pivotal moment in the intersection of sports and antitrust law, shaping the landscape of professional sports in America for decades to come.",
++    "industry": "Technology",
++    "summary": "The FTC investigated Microsoft for anti-competitive practices in the software market. The case focused on Microsoft's dominance and its impact on competition. Ultimately, it led to significant changes in the software industry.",
++    "outcome": "Microsoft faced restrictions to promote competition in the software market.",
++    "market": "- **Operating systems**\n- **Market share**: ~90% in desktop OS\n- **Competitors**: Apple, Linux distributions\n- **Barriers to entry**: High due to established user base and developer support.",
++    "conduct": "- Engaging in anti-competitive practices by bundling software products.\n- Excluding competitors from the market through aggressive pricing strategies.",
++    "theory_of_harm": "- **Exclusion of competitors**: Microsoft’s practices limited the ability of other software developers to compete effectively.\n- **Reduced innovation**: The lack of competition stifled innovation in the software industry.",
++    "economics_issues": "- **Network effects**: High user base creates a barrier for new entrants.\n- **Economies of scale**: Microsoft benefits from lower costs due to large-scale production.\n- **Switching costs**: Users face high costs when changing operating systems.",
++    "decision": "- The FTC found Microsoft violated antitrust laws.\n- Remedies included restrictions on Microsoft’s business practices and oversight of its operations.",
+     "tags": [
+       "Antitrust",
+-      "Baseball",
+-      "Sherman Act",
+-      "Monopoly",
+-      "Sports Law"
++      "Software Market",
++      "FTC",
++      "Microsoft"
+     ],
+     "parties_involved": [
+-      "Federal Baseball Club",
+-      "National League",
+-      "American League",
+-      "Baltimore Terrapins"
++      "FTC",
++      "Microsoft"
+     ],
+     "fine_amount": null,
+-    "decision_date": "1922-05-29",
++    "decision_date": "2001-06-28",
+     "links": [
+-      "https://en.wikipedia.org/?curid=954585"
++      "https://en.wikipedia.org/?curid=74153409"
+     ],
+     "timeline_events": [
+       {
+-        "date": "1915-01-01",
+-        "description": "Federal League folds."
++        "date": "1998-05-18",
++        "description": "FTC files complaint against Microsoft."
+       },
+       {
+-        "date": "1919-01-01",
+-        "description": "Trial court finds defendants liable and assesses damages."
++        "date": "2000-11-05",
++        "description": "Court ruling against Microsoft."
+       },
+       {
+-        "date": "1922-05-29",
+-        "description": "U.S. Supreme Court rules that baseball is not subject to the Sherman Act."
++        "date": "2001-06-28",
++        "description": "Final settlement reached."
+       }
+     ]
+   },
+   {
+-    "title": "District of Columbia Court of Appeals v. Feldman",
+-    "authority": "Courts",
+-    "status": "Closed",
+-    "industry": "Legal",
+-    "summary": "### Background\nThe case of **District of Columbia Court of Appeals v. Feldman** revolves around the legal challenges faced by individuals seeking to practice law in the District of Columbia. The case highlights the intersection of state bar admission requirements and constitutional rights.\n\n### Theory of Harm\nThe plaintiff, Feldman, argued that the District of Columbia's bar admission process was unconstitutional, claiming it imposed undue restrictions on his ability to practice law. This raised significant questions about the balance between state regulatory authority and individual rights.\n\n### Outcome\nUltimately, the court ruled on the validity of the bar admission requirements, setting a precedent for future cases involving similar issues. The decision underscored the importance of ensuring that state regulations do not infringe upon constitutional rights.\n\n### Key Takeaways\n- The case emphasizes the need for fair and equitable bar admission processes.\n- It illustrates the ongoing tension between state authority and individual rights in the legal profession.\n- The ruling has implications for future applicants to the bar in various jurisdictions.\n\n### Implications for Future Cases\nThis case serves as a critical reference point for individuals challenging bar admission requirements across the United States, reinforcing the necessity for transparency and fairness in the legal profession.\n\n```svg\n<svg width=\"100\" height=\"100\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />\n</svg>\n```",
++    "title": "FTC v. Amazon",
++    "authority": "FTC",
++    "status": "Open",
++    "industry": "Technology",
++    "summary": "The FTC has initiated a case against Amazon regarding potential anti-competitive practices. The case focuses on issues related to market dominance and consumer harm. Further details are pending as the investigation unfolds.",
++    "outcome": "Case ongoing with potential implications for Amazon's business practices.",
++    "market": "- **E-commerce**\n- **Market share**: Significant presence in online retail\n- **Competitors**: Walmart, eBay, Alibaba\n- **Barriers to entry**: High due to established logistics and customer base.",
++    "conduct": "- Allegations of anti-competitive pricing strategies\n- Potential misuse of data to undermine competitors.",
++    "theory_of_harm": "- Exclusion of competitors from the market\n- Reduced innovation in e-commerce sector\n- Potential harm to consumers through higher prices.",
++    "economics_issues": "- **Network effects**: Strong customer loyalty and vast user base\n- **Economies of scale**: Cost advantages due to large volume of sales\n- **Switching costs**: High for consumers accustomed to Amazon's services.",
++    "decision": "No decision has been made yet as the case is still under investigation.",
+     "tags": [
+-      "Legal Profession",
+-      "Bar Admission",
+-      "Constitutional Rights"
++      "Antitrust",
++      "E-commerce",
++      "Market Dominance"
+     ],
+     "parties_involved": [
+-      "District of Columbia Court of Appeals",
+-      "Feldman"
++      "FTC",
++      "Amazon"
+     ],
+     "fine_amount": null,
+-    "decision_date": "2008-01-01",
++    "decision_date": null,
+     "links": [
+-      "https://en.wikipedia.org/?curid=1712885"
++      "https://en.wikipedia.org/?curid=74915665"
+     ],
+-    "timeline_events": [
+-      {
+-        "date": "2008-01-01",
+-        "description": "Court decision issued."
+-      }
+-    ]
++    "timeline_events": []
+   },
+   {
+-    "title": "Credit Suisse Securities (USA) LLC v. Billing",
+-    "authority": "Courts",
++    "title": "FTC v. Consolidated Foods Corp.",
++    "authority": "FTC",
+     "status": "Closed",
+-    "industry": "Finance",
+-    "summary": "### Background\nThe case of **Credit Suisse Securities (USA) LLC v. Billing** revolves around allegations of antitrust violations in the financial services sector. The plaintiffs, a group of investors, accused Credit Suisse and other banks of colluding to manipulate the market for initial public offerings (IPOs). This case highlights the complexities of competition law within the financial industry and the implications of alleged collusion among major financial institutions.\n\n### Theory of Harm\nThe plaintiffs argued that the banks engaged in practices that restricted competition and harmed investors. They claimed that the banks coordinated their actions to inflate the prices of IPOs, thereby limiting the potential returns for investors. This theory of harm is central to understanding the competitive dynamics in the IPO market and the potential consequences of collusion among financial institutions.\n\n### Legal Proceedings\nThe case was brought before the courts, where various motions were filed by the defendants to dismiss the claims. The legal arguments centered around the interpretation of antitrust laws and the evidence presented by the plaintiffs. The court's decisions on these motions were critical in shaping the trajectory of the case.\n\n### Outcome\nUltimately, the court ruled in favor of the defendants, dismissing the claims made by the plaintiffs. The decision underscored the challenges faced by plaintiffs in proving antitrust violations, particularly in complex financial markets. The ruling also highlighted the importance of robust evidence in antitrust litigation.\n\n### Implications\nThe outcome of this case has significant implications for future antitrust litigation in the financial sector. It serves as a precedent for how courts may interpret collusion and competition in the context of IPOs and other financial services. The case also raises questions about the regulatory environment and the need for oversight in financial markets to prevent anti-competitive behavior.\n\n### Conclusion\nIn conclusion, **Credit Suisse Securities (USA) LLC v. Billing** serves as a pivotal case in understanding the intersection of antitrust law and the financial industry. It illustrates the complexities involved in proving collusion and the challenges that investors face in seeking redress for alleged anti-competitive practices. The case remains a significant reference point for legal practitioners and regulators alike.\n\n```svg\n<svg width=\"100\" height=\"100\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />\n</svg>\n```",
++    "industry": "Food and Beverage",
++    "summary": "The FTC investigated Consolidated Foods for anti-competitive practices in the food industry. The case focused on market dominance and pricing strategies. Ultimately, it aimed to ensure fair competition and consumer protection.",
++    "outcome": "Consolidated Foods faced restrictions on its business practices.",
++    "market": "- **Food and Beverage Industry**\n- **Relevant market share**: Significant presence in various food sectors\n- **Competitors**: Other major food corporations\n- **Barriers to entry**: High due to established brands and distribution networks.",
++    "conduct": "- Engaging in anti-competitive pricing strategies\n- Acquiring smaller competitors to reduce market competition.",
++    "theory_of_harm": "- **Exclusion of competitors**: By acquiring rivals, Consolidated Foods limited market choices.\n- **Reduced innovation**: Less competition can lead to stagnation in product development.",
++    "economics_issues": "- **Economies of scale**: Larger firms can produce at lower costs, disadvantaging smaller competitors.\n- **High entry barriers**: Established brands make it difficult for new entrants to compete.",
++    "decision": "- The FTC found violations of antitrust laws.\n- Remedies included restrictions on future acquisitions and business practices.",
+     "tags": [
+       "Antitrust",
+-      "IPO",
+-      "Collusion",
+-      "Financial Services"
++      "Merger Control",
++      "Competition Law"
+     ],
+     "parties_involved": [
+-      "Credit Suisse Securities (USA) LLC",
+-      "Investors"
++      "FTC",
++      "Consolidated Foods Corp."
+     ],
+     "fine_amount": null,
+-    "decision_date": "2008-06-30",
++    "decision_date": "YYYY-MM-DD",
+     "links": [
+-      "https://en.wikipedia.org/?curid=11851918"
++      "https://en.wikipedia.org/?curid=78053583"
+     ],
+-    "timeline_events": [
+-      {
+-        "date": "2008-06-30",
+-        "description": "Court ruled in favor of defendants, dismissing the claims."
+-      }
+-    ]
++    "timeline_events": []
+   },
+   {
+-    "title": "Flood v. Kuhn",
+-    "authority": "Courts",
++    "title": "FTC v. Phoebe Putney Health System, Inc.",
++    "authority": "FTC",
+     "status": "Closed",
+-    "industry": "Sports",
+-    "summary": "### Background\nFlood v. Kuhn is a landmark case in the realm of sports law and antitrust regulation, decided by the United States Supreme Court in 1972. The case revolved around the challenge to Major League Baseball's reserve clause, which effectively bound players to their teams indefinitely. Curt Flood, a center fielder for the St. Louis Cardinals, sought free agency after being traded to the Philadelphia Phillies, arguing that the reserve clause violated antitrust laws.\n\n### Theory of Harm\nFlood's argument was rooted in the assertion that the reserve clause restricted player mobility and competition within the league. He contended that this practice not only harmed players but also negatively impacted the overall competitive landscape of professional baseball. The case raised significant questions about the intersection of labor rights and antitrust laws, particularly in how they apply to professional sports.\n\n### Outcome\nThe Supreme Court ultimately ruled against Flood, upholding the reserve clause and affirming that Major League Baseball was exempt from antitrust laws due to its unique status as a sport. This decision had profound implications for player contracts and the structure of professional sports leagues in the United States. While Flood lost the case, his challenge laid the groundwork for future negotiations and changes in player rights, leading to the eventual establishment of free agency in baseball.\n\n### Implications\n- **Player Mobility**: The ruling reinforced the reserve clause, limiting player movement.\n- **Antitrust Exemption**: Major League Baseball maintained its unique exemption from antitrust laws.\n- **Future Changes**: Flood's challenge eventually contributed to the evolution of player rights and free agency.\n\n### Conclusion\nFlood v. Kuhn remains a pivotal case in understanding the legal landscape of sports and antitrust law, highlighting the ongoing tension between labor rights and the business interests of professional sports leagues.",
++    "industry": "Healthcare",
++    "summary": "The FTC challenged the merger between Phoebe Putney Health System and Palmyra Park Hospital. The case focused on potential anti-competitive effects in the local healthcare market.",
++    "outcome": "Merger was found to substantially lessen competition in the market.",
++    "market": "- **Relevant market**: Local healthcare services in Albany, Georgia\n- **Market share**: Combined entity would control a significant portion of the market\n- **Competitors**: Few alternative providers in the area, leading to reduced competition.",
++    "conduct": "- The merger between Phoebe Putney Health System and Palmyra Park Hospital was challenged.\n- Allegations of anti-competitive practices that would harm consumers.",
++    "theory_of_harm": "- The merger would likely lead to higher prices for healthcare services.\n- Reduced incentives for innovation and quality improvements in healthcare.",
++    "economics_issues": "- **High entry barriers**: Difficult for new providers to enter the market due to regulatory requirements.\n- **Economies of scale**: Larger entities may dominate pricing and service offerings.",
++    "decision": "- The FTC ruled that the merger violated antitrust laws, specifically the Clayton Act.\n- The decision aimed to prevent the reduction of competition in the healthcare market.",
+     "tags": [
++      "Merger Control",
+       "Antitrust",
+-      "Sports Law",
+-      "Reserve Clause",
+-      "Free Agency"
++      "Healthcare"
+     ],
+     "parties_involved": [
+-      "Curt Flood",
+-      "Major League Baseball"
++      "Phoebe Putney Health System, Inc.",
++      "Palmyra Park Hospital"
+     ],
+     "fine_amount": null,
+-    "decision_date": "1972-06-19",
++    "decision_date": "2013-01-01",
+     "links": [
+-      "https://en.wikipedia.org/?curid=15933949"
++      "https://en.wikipedia.org/?curid=81200957"
+     ],
+     "timeline_events": [
+       {
+-        "date": "1970-10-07",
+-        "description": "Curt Flood files a lawsuit against Major League Baseball."
++        "date": "2011-01-01",
++        "description": "FTC initiated investigation into the merger."
+       },
+       {
+-        "date": "1972-06-19",
+-        "description": "The Supreme Court delivers its decision in Flood v. Kuhn."
++        "date": "2013-01-01",
++        "description": "FTC issued a decision against the merger."
+       }
+     ]
+   },
+   {
+-    "title": "Fashion Originators' Guild of America v. FTC",
+-    "authority": "FTC",
++    "title": "Modification of Final Judgment",
++    "authority": "Courts",
+     "status": "Closed",
+-    "industry": "Fashion",
+-    "summary": "### Background\nThe case of **Fashion Originators' Guild of America v. FTC** revolves around the practices of the Fashion Originators' Guild, which was established to protect the interests of fashion designers. The Guild sought to prevent the copying of designs by enforcing a code of ethics among its members. However, this led to significant antitrust concerns as it restricted competition in the fashion industry.\n\n### Theory of Harm\nThe primary issue at hand was whether the Guild's actions constituted an illegal restraint of trade. The FTC argued that the Guild's practices effectively created a monopoly over fashion design, limiting the ability of other designers and retailers to compete fairly. This raised questions about the balance between protecting intellectual property and maintaining a competitive marketplace.\n\n### Outcome\nThe FTC ultimately ruled against the Fashion Originators' Guild, determining that their practices were anti-competitive. The decision emphasized the importance of competition in the fashion industry and set a precedent for how similar cases would be handled in the future. The ruling highlighted the need for organizations to operate within the bounds of antitrust laws, even when their intentions may be to protect their members.\n\n### Implications\nThis case had significant implications for the fashion industry, as it underscored the necessity for designers to navigate the complexities of both intellectual property rights and antitrust regulations. It served as a reminder that while protecting creative works is important, it should not come at the expense of fair competition.\n\n- **Key Takeaways:**\n  - The case illustrates the tension between intellectual property protection and antitrust laws.\n  - It set a precedent for future cases involving trade associations and their practices.\n  - The ruling reinforced the FTC's role in monitoring and regulating anti-competitive behavior in various industries.\n\n### Conclusion\nThe Fashion Originators' Guild of America v. FTC case remains a landmark decision in the realm of antitrust law, particularly within the fashion sector. It serves as a critical reference point for understanding how trade associations must operate without infringing on competitive practices.",
++    "industry": "Telecommunications",
++    "summary": "The Modification of Final Judgment (MFJ) was a consent decree that required the breakup of the Bell System. It aimed to reorganize AT&T and remove local telephone service from its control. The decree was presided over by Judge Harold H. Greene in 1982.",
++    "outcome": "AT&T was required to break up its monopoly in telecommunications.",
++    "market": "- **Telecommunications**\n- **Market share**: AT&T held a dominant position prior to breakup\n- **Competitors**: Regional telephone companies emerged post-breakup\n- **Barriers to entry**: High due to infrastructure costs",
++    "conduct": "- AT&T was found to have monopolistic practices in the telecommunications market.\n- The MFJ imposed restrictions on AT&T's business operations.",
++    "theory_of_harm": "- **Exclusion of competitors**: AT&T's practices limited competition in the telecommunications sector.\n- **Reduced innovation**: Monopolistic control stifled technological advancements.",
++    "economics_issues": "- **Economies of scale**: AT&T's size allowed it to dominate the market.\n- **High entry barriers**: Significant infrastructure investment required to compete.",
++    "decision": "- The court ruled against AT&T under antitrust laws, specifically addressing monopolistic practices.\n- The MFJ mandated the breakup of AT&T and imposed operational restrictions.",
+     "tags": [
+       "Antitrust",
+-      "Fashion",
+-      "Competition Law",
+-      "FTC"
++      "Telecommunications",
++      "Monopoly",
++      "Consent Decree"
+     ],
+     "parties_involved": [
+-      "Fashion Originators' Guild of America",
+-      "Federal Trade Commission"
++      "United States",
++      "American Telephone and Telegraph Company",
++      "Western Electric Company"
+     ],
+     "fine_amount": null,
+-    "decision_date": "1941-01-01",
++    "decision_date": "1982-08-24",
+     "links": [
+-      "https://en.wikipedia.org/?curid=18385730"
++      "https://en.wikipedia.org/?curid=41377"
+     ],
+     "timeline_events": [
+       {
+-        "date": "1941-01-01",
+-        "description": "FTC ruled against the Fashion Originators' Guild for anti-competitive practices."
++        "date": "1949-01-14",
++        "description": "Antitrust lawsuit filed against AT&T and Western Electric."
++      },
++      {
++        "date": "1956-01-24",
++        "description": "Final Judgment vacated."
++      },
++      {
++        "date": "1982-08-24",
++        "description": "Modification of Final Judgment issued."
+       }
+     ]
+   },
+   {
+-    "title": "FTC v. Sperry & Hutchinson Trading Stamp Co.",
+-    "authority": "FTC",
++    "title": "National Broadcasting Co. v. United States",
++    "authority": "Courts",
+     "status": "Closed",
+-    "industry": "Retail",
+-    "summary": "### Background\nThe case of **FTC v. Sperry & Hutchinson Trading Stamp Co.** is a landmark antitrust case that was decided by the United States Supreme Court in 1972. The Federal Trade Commission (FTC) brought the case against Sperry & Hutchinson (S&H) for engaging in unfair and deceptive practices related to their trading stamp program. S&H was known for issuing trading stamps that consumers could collect and redeem for various products, which created a significant market presence.\n\n### Theory of Harm\nThe FTC argued that S&H's practices were anti-competitive and harmed consumers by misleading them about the value of the stamps. The trading stamp system was designed to encourage consumer loyalty, but it also created barriers for competitors who could not match the extensive rewards offered by S&H. The FTC's position was that such practices violated the Federal Trade Commission Act, which prohibits unfair or deceptive acts or practices in commerce.\n\n### Outcome\nThe Supreme Court ultimately ruled in favor of the FTC, affirming that S&H's practices were indeed unfair and deceptive. The ruling led to significant changes in how trading stamp programs were regulated and enforced, ensuring that consumers were better protected from misleading marketing practices. This case set a precedent for future antitrust actions against deceptive marketing strategies.\n\n### Implications\n- **Consumer Protection**: The case reinforced the importance of transparency in marketing and consumer protection laws.\n- **Market Competition**: It highlighted the need for fair competition in the marketplace, ensuring that no single company could dominate through deceptive practices.\n- **Regulatory Framework**: The ruling contributed to the development of a more robust regulatory framework for monitoring and controlling unfair business practices.\n\n### Conclusion\nFTC v. Sperry & Hutchinson Trading Stamp Co. remains a significant case in the realm of antitrust law, illustrating the balance between marketing strategies and consumer rights. The decision has had lasting implications for how businesses operate and how regulatory bodies enforce fair competition.\n\n```svg\n<svg width=\"100\" height=\"100\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />\n</svg>\n```",
++    "industry": "Media",
++    "summary": "This case addressed the regulation of broadcasting and the rights of networks. It involved the Federal Communications Commission's authority over broadcasting practices. The ruling impacted how networks operated in relation to public interest obligations.",
++    "outcome": "NBC's practices were found to violate broadcasting regulations.",
++    "market": "- **Broadcasting industry**\n- **Market share**: Major networks including NBC, CBS, ABC\n- **Barriers to entry**: High due to licensing and regulatory requirements.",
++    "conduct": "- NBC engaged in practices that restricted competition in broadcasting.\n- The case examined the implications of network affiliations and advertising practices.",
++    "theory_of_harm": "- Exclusion of smaller broadcasters from the market.\n- Reduced diversity of viewpoints and programming options for consumers.",
++    "economics_issues": "- **High entry barriers**: Licensing requirements limit new entrants.\n- **Economies of scale**: Larger networks benefit from lower costs per viewer.",
++    "decision": "- The court upheld FCC regulations on broadcasting.\n- NBC was required to change its practices to comply with public interest standards.",
+     "tags": [
+-      "Antitrust",
+-      "Consumer Protection",
+-      "Deceptive Practices"
++      "Broadcasting Regulation",
++      "FCC",
++      "Competition Law"
+     ],
+     "parties_involved": [
+-      "FTC",
+-      "Sperry & Hutchinson Trading Stamp Co."
++      "National Broadcasting Company",
++      "United States"
+     ],
+     "fine_amount": null,
+-    "decision_date": "1972-01-01",
++    "decision_date": "1943-01-01",
+     "links": [
+-      "https://en.wikipedia.org/?curid=20401835"
++      "https://en.wikipedia.org/?curid=1639958"
+     ],
+     "timeline_events": [
+       {
+-        "date": "1972-01-01",
+-        "description": "Supreme Court ruling in favor of the FTC."
++        "date": "1943-01-01",
++        "description": "Court decision issued regarding NBC's broadcasting practices."
+       }
+     ]
+   },
+   {
+-    "title": "Duplex Printing Press Co. v. Deering",
++    "title": "Mid-South Grizzlies v. National Football League",
+     "authority": "Courts",
+     "status": "Closed",
+-    "industry": "Manufacturing",
+-    "summary": "### Background\nThe case of **Duplex Printing Press Co. v. Deering** revolves around a dispute concerning patent rights and competition in the printing press industry. Duplex Printing Press Co. claimed that Deering had infringed upon their patents related to printing technology. This case highlights the complexities of intellectual property rights and their intersection with antitrust laws.\n\n### Theory of Harm\nDuplex Printing Press Co. argued that Deering's actions not only infringed on their patents but also created an unfair competitive advantage in the market. The implications of such actions could potentially stifle innovation and limit consumer choices in the printing industry. The case raised important questions about the balance between protecting intellectual property and maintaining healthy competition.\n\n### Outcome\nThe court ultimately ruled in favor of Duplex Printing Press Co., affirming their patent rights and emphasizing the importance of protecting intellectual property in fostering competition. This decision served as a precedent for future cases involving patent infringement and antitrust issues.\n\n### Key Takeaways\n- The case underscores the significance of patent rights in competitive markets.\n- It illustrates the legal challenges companies face when navigating both patent law and antitrust regulations.\n- The ruling reinforced the notion that protecting innovation is crucial for market health.\n\n### Implications for Future Cases\nThis case set a precedent for how courts might handle similar disputes in the future, particularly in industries where technology and competition intersect. It serves as a reminder of the delicate balance between protecting inventors and ensuring fair competition.\n\n```svg\n<svg width=\"100\" height=\"100\">\n  <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" />\n</svg>\n```",
++    "industry": "Sports",
++    "summary": "This case involved a dispute between the Mid-South Grizzlies and the NFL regarding league regulations and team operations. The court's decision addressed the legality of certain NFL practices affecting minor league teams.",
++    "outcome": "Court ruled in favor of the NFL, upholding league regulations.",
++    "market": "- **Professional football**\n- **Market share**: NFL dominates the professional football market in the U.S.\n- **Competitors**: Other minor leagues and college football.",
++    "conduct": "- The NFL was accused of imposing restrictive regulations on minor league teams.\n- Allegations included unfair competition practices.",
++    "theory_of_harm": "- The conduct potentially harmed competition by limiting the operational freedom of minor league teams.\n- It could lead to reduced opportunities for player development and fan engagement.",
++    "economics_issues": "- **Barriers to entry**: High costs associated with starting a new league.\n- **Network effects**: NFL's established fan base makes it difficult for new leagues to attract viewers.",
++    "decision": "- The court found that the NFL's regulations were within legal bounds.\n- No violation of antitrust laws was established.",
+     "tags": [
+-      "Patent Infringement",
+       "Antitrust",
+-      "Competition Law"
++      "Sports Law",
++      "NFL",
++      "Minor League"
+     ],
+     "parties_involved": [
+-      "Duplex Printing Press Co.",
+-      "Deering"
++      "Mid-South Grizzlies",
++      "National Football League"
+     ],
+     "fine_amount": null,
+-    "decision_date": "1920-01-01",
++    "decision_date": "2023-01-01",
+     "links": [
+-      "https://en.wikipedia.org/?curid=20516359"
++      "https://en.wikipedia.org/?curid=2873335"
+     ],
+     "timeline_events": [
+       {
+-        "date": "1920-01-01",
+-        "description": "Court ruling in favor of Duplex Printing Press Co."
++        "date": "2023-01-01",
++        "description": "Court decision issued in favor of the NFL."
+       }
+     ]
+   },
+   {
+-    "title": "De Beers antitrust litigation",
+-    "authority": "Courts",
++    "title": "Northern Securities Co. v. United States",
++    "authority": "Supreme Court",
+     "status": "Closed",
+-    "industry": "Mining",
+-    "summary": "### Background\nThe De Beers antitrust litigation refers to a series of legal battles involving De Beers, a company historically dominant in the diamond industry. The case primarily revolved around allegations of monopolistic practices and anti-competitive behavior that stifled competition in the diamond market.\n\n### Theory of Harm\nThe plaintiffs argued that De Beers engaged in practices that restricted competition, including:\n- **Price fixing**: Maintaining high prices for diamonds through controlled supply.\n- **Market allocation**: Dividing markets among competitors to avoid competition.\n- **Exclusive contracts**: Forcing retailers to sell only De Beers diamonds, limiting consumer choice.\n\n### Legal Proceedings\nThe litigation involved multiple jurisdictions and was characterized by:\n- **Class action lawsuits**: Filed by consumers and retailers affected by De Beers' practices.\n- **Settlement negotiations**: Attempts to resolve the disputes outside of court.\n\n### Outcome\nThe case concluded with a settlement that included:\n- **Financial compensation**: Payments to affected parties.\n- **Changes in business practices**: De Beers agreed to modify its operations to promote fair competition.\n\n### Impact\nThe De Beers antitrust litigation had significant implications for the diamond industry, including:\n- **Increased scrutiny**: Regulatory bodies began to closely monitor the diamond market.\n- **Market changes**: New entrants were able to compete more effectively against De Beers.\n\n### Conclusion\nThe De Beers antitrust litigation serves as a landmark case in antitrust law, highlighting the importance of competition in markets traditionally dominated by a single entity. It underscores the need for regulatory oversight to prevent monopolistic practices that harm consumers and competition.",
++    "industry": "Transportation",
++    "summary": "Northern Securities Co. v. United States was a landmark antitrust case that addressed monopolistic practices in the railroad industry. The Supreme Court ruled against Northern Securities, leading to its dissolution. This case set a precedent for future antitrust litigation in the United States.",
++    "outcome": "Northern Securities was ordered to dissolve due to antitrust violations.",
++    "market": "- **Railroad industry**\n- **Market share**: Significant control over railroads in the Northwest\n- **Competitors**: Other railroad companies operating in the region",
++    "conduct": "- Engaged in anti-competitive practices by forming a monopoly over railroad operations.\n- Coordinated pricing and service levels to eliminate competition.",
++    "theory_of_harm": "- **Exclusion of competitors**: The monopoly restricted market access for other railroad companies.\n- **Reduced innovation**: Lack of competition stifled improvements in service and pricing.",
++    "economics_issues": "- **High entry barriers**: Significant capital required to enter the railroad industry.\n- **Economies of scale**: Larger companies could operate at lower costs, further disadvantaging smaller competitors.",
++    "decision": "- The Supreme Court found Northern Securities in violation of the Sherman Act.\n- Ordered the dissolution of the company to restore competition in the market.",
+     "tags": [
+       "Antitrust",
+       "Monopoly",
+-      "Litigation",
+-      "De Beers",
+-      "Diamond Industry"
++      "Sherman Act",
++      "Railroad"
+     ],
+     "parties_involved": [
+-      "De Beers",
+-      "Consumers",
+-      "Retailers"
++      "Northern Securities Company",
++      "United States"
+     ],
+     "fine_amount": null,
+-    "decision_date": "2006-01-01",
++    "decision_date": "1904-03-14",
+     "links": [
+-      "https://en.wikipedia.org/?curid=22802021"
++      "https://en.wikipedia.org/?curid=10126302"
+     ],
+     "timeline_events": [
+       {
+-        "date": "2006-01-01",
+-        "description": "Settlement reached in the De Beers antitrust litigation."
++        "date": "1904-03-14",
++        "description": "Supreme Court decision ordering the dissolution of Northern Securities."
+       }
+     ]
+   },
+   {
+-    "title": "Copperweld Corp. v. Independence Tube Corp.",
++    "title": "Leegin Creative Leather Products, Inc. v. PSKS, Inc.",
+     "authority": "Courts",
+     "status": "Closed",
+-    "industry": "Manufacturing",
+-    "summary": "### Background\nThe case of **Copperweld Corp. v. Independence Tube Corp.** revolves around the issue of antitrust law and the concept of corporate unity. The Supreme Court addressed whether a parent company and its wholly-owned subsidiary can conspire to violate antitrust laws under Section 1 of the Sherman Act. This case is significant as it clarifies the legal interpretation of 'conspiracy' in the context of corporate relationships.\n\n### Theory of Harm\nThe plaintiff, Independence Tube Corp., alleged that Copperweld Corp. and its subsidiary engaged in anti-competitive practices that harmed competition in the market for steel tubing. The core argument was that the actions taken by Copperweld and its subsidiary constituted a conspiracy to restrain trade, which is prohibited under antitrust laws. The case raised important questions about the nature of corporate entities and their ability to conspire against competitors.\n\n### Outcome\nIn a landmark decision, the Supreme Court ruled that a parent company and its wholly-owned subsidiary are legally incapable of conspiring with each other under the Sherman Act. The Court reasoned that since the subsidiary is not a separate entity from the parent in terms of economic interests, they cannot be considered to have independent motivations that would lead to a conspiracy. This ruling has had lasting implications for antitrust law, particularly in how corporate structures are viewed in relation to competition.\n\n### Implications\nThe decision in Copperweld has influenced numerous subsequent cases and has been cited in discussions regarding corporate governance and antitrust enforcement. It underscores the importance of understanding the dynamics of corporate relationships when assessing potential anti-competitive behavior.\n\n### Conclusion\nOverall, Copperweld Corp. v. Independence Tube Corp. serves as a critical reference point in antitrust law, particularly regarding the interpretation of conspiracy among corporate entities. The ruling has shaped the legal landscape for how companies operate and interact within competitive markets.",
++    "industry": "Retail",
++    "summary": "This case addressed the legality of minimum resale price maintenance agreements. The Supreme Court ruled that such agreements could be lawful under certain circumstances, impacting pricing strategies in retail.",
++    "outcome": "Supreme Court upheld minimum resale price maintenance as potentially lawful.",
++    "market": "- **Retail leather goods**\n- **Market share**: Various competitors in the leather goods market\n- **Barriers to entry**: Moderate due to brand loyalty and distribution channels.",
++    "conduct": "- Leegin implemented minimum resale price maintenance with retailers.\n- PSKS challenged this practice as anti-competitive.",
++    "theory_of_harm": "- Potential exclusion of discount retailers leading to higher prices for consumers.\n- Reduced competition among retailers.",
++    "economics_issues": "- **Market power**: Leegin's control over pricing strategies.\n- **Barriers to entry**: Established brands may deter new entrants.",
++    "decision": "- The Supreme Court ruled that minimum resale price maintenance is not automatically illegal under the Sherman Act.\n- This decision overturned previous precedents that deemed such practices per se illegal.",
+     "tags": [
+-      "Antitrust",
+-      "Sherman Act",
+-      "Corporate Conspiracy"
++      "Resale Price Maintenance",
++      "Supreme Court",
++      "Antitrust"
+     ],
+     "parties_involved": [
+-      "Copperweld Corp.",
+-      "Independence Tube Corp."
++      "Leegin Creative Leather Products, Inc.",
++      "PSKS, Inc."
+     ],
+     "fine_amount": null,
+-    "decision_date": "1984-06-25",
++    "decision_date": "2007-06-28",
+     "links": [
+-      "https://en.wikipedia.org/?curid=32382412"
++      "https://en.wikipedia.org/?curid=12000111"
+     ],
+     "timeline_events": [
+       {
+-        "date": "1984-06-25",
++        "date": "2007-06-28",
+         "description": "Supreme Court decision issued."
+       }
+     ]
+   },
+   {
+-    "title": "Eastman Kodak Co. v. Image Technical Services, Inc.",
++    "title": "Loewe v. Lawlor",
+     "authority": "Courts",
+     "status": "Closed",
+-    "industry": "Technology",
+-    "summary": "### Background\nThe case of **Eastman Kodak Co. v. Image Technical Services, Inc.** revolves around the issues of antitrust law and the competitive practices within the imaging technology industry. Kodak, a well-known name in photography and imaging, was accused of engaging in anti-competitive practices that harmed independent service organizations (ISOs) that provided repair services for Kodak equipment.\n\n### Theory of Harm\nThe plaintiffs, Image Technical Services, Inc. and others, argued that Kodak had a monopoly over the market for parts and services related to its equipment. They claimed that Kodak's practices included:\n- **Refusal to sell parts** to ISOs, thereby limiting competition.\n- **Price discrimination** against ISOs compared to Kodak's own service offerings.\n- **Creating barriers** for ISOs to enter the market.\n\nThese actions were alleged to violate Section 2 of the Sherman Act, which prohibits monopolization and attempts to monopolize.\n\n### Outcome\nThe case was significant in clarifying the legal standards for monopolization and the responsibilities of companies in maintaining fair competition. The court ultimately ruled in favor of the plaintiffs, finding that Kodak's practices were indeed anti-competitive. This decision reinforced the importance of allowing independent service providers to compete fairly in the market.\n\n### Implications\nThe ruling had far-reaching implications for the technology and service industries, emphasizing the need for companies to engage in fair competition and avoid practices that could harm market dynamics. It also served as a precedent for future antitrust cases involving monopolistic behavior.\n\n### Conclusion\nThe Eastman Kodak case is a landmark in antitrust law, illustrating the balance between protecting intellectual property and ensuring competitive markets. It remains a critical reference point for understanding monopolistic practices in technology sectors.",
++    "industry": "Legal",
++    "summary": "Loewe v. Lawlor was a significant case addressing issues of antitrust and competition law. The case involved allegations of anti-competitive practices that impacted market dynamics. The court's decision set important precedents for future antitrust litigation.",
++    "outcome": "Court ruled in favor of Loewe, addressing anti-competitive practices.",
++    "market": "- **Relevant market**: Legal services\n- **Competitors**: Various law firms\n- **Market share**: Not specified\n- **Barriers to entry**: High due to licensing requirements.",
++    "conduct": "- Engaging in anti-competitive agreements\n- Restricting competition among law firms.",
++    "theory_of_harm": "- **Exclusion of competitors**: Practices limited the ability of other firms to compete.\n- **Reduced innovation**: Anti-competitive behavior stifled new legal service offerings.",
++    "economics_issues": "- **High entry barriers**: Licensing and regulatory requirements limit new entrants.\n- **Economies of scale**: Larger firms benefit from cost advantages.",
++    "decision": "- The court found violations of antitrust laws.\n- Remedies included injunctions against certain practices.",
+     "tags": [
+       "Antitrust",
+-      "Monopolization",
+-      "Sherman Act",
+-      "Technology",
+-      "Service Market"
++      "Competition Law",
++      "Legal Services"
+     ],
+     "parties_involved": [
+-      "Eastman Kodak Co.",
+-      "Image Technical Services, Inc."
++      "Loewe",
++      "Lawlor"
+     ],
+     "fine_amount": null,
+-    "decision_date": "1992-06-01",
++    "decision_date": "1908-01-01",
+     "links": [
+-      "https://en.wikipedia.org/?curid=33570729"
++      "https://en.wikipedia.org/?curid=16054347"
+     ],
+-    "timeline_events": [
+-      {
+-        "date": "1992-06-01",
+-        "description": "Court decision favoring Image Technical Services against Kodak."
+-      }
+-    ]
++    "timeline_events": []
+   }
+ ]
+\ No newline at end of file
+diff --git a/src/app/actions.ts b/src/app/actions.ts
+index fa03996..10ffbf3 100644
+--- a/src/app/actions.ts
++++ b/src/app/actions.ts
+@@ -18,6 +18,7 @@ export type CaseMatch = {
+     citations_count: number | null
+     links: string[]
+     created_at: string
++    is_favorite: boolean | null
+ }
+ 
+ export async function getCases(
+@@ -29,6 +30,7 @@ export async function getCases(
+     geographyFilters?: string[],
+     companyFilters?: string[],
+     decadeFilters?: string[],
++    timeframeFilters?: string[],
+     sortBy?: string,
+     page: number = 1,
+     limit: number = 20
+@@ -36,7 +38,7 @@ export async function getCases(
+     const supabase = await createClient()
+ 
+     // Atualizado para buscar os novos campos e respeitar o limite, e pedir a contagem otimizada
+-    let query = supabase.from('Cases').select('id, title, summary, authority, geography, status, industry, tags, parties_involved, fine_amount, decision_date, start_date, citations_count, links, created_at', { count: 'exact' })
++    let query = supabase.from('Cases').select('id, title, summary, authority, geography, status, industry, tags, parties_involved, fine_amount, decision_date, start_date, citations_count, links, created_at, is_favorite', { count: 'exact' })
+     
+     // Configurar o Sorting principal
+     if (sortBy === 'cited') {
+@@ -92,6 +94,27 @@ export async function getCases(
+         }
+     }
+ 
++    if (timeframeFilters && timeframeFilters.length > 0) {
++        const currentYear = new Date().getFullYear();
++        const yearConditions: string[] = [];
++        
++        if (timeframeFilters.includes('last_5_years')) {
++            for (let i = 0; i < 5; i++) {
++                yearConditions.push(`decision_date.ilike.%${currentYear - i}%`);
++            }
++        }
++        if (timeframeFilters.includes('last_20_years')) {
++            for (let i = 0; i < 20; i++) {
++                yearConditions.push(`decision_date.ilike.%${currentYear - i}%`);
++            }
++        }
++        
++        const uniqueConditions = Array.from(new Set(yearConditions));
++        if (uniqueConditions.length > 0) {
++            query = query.or(uniqueConditions.join(','));
++        }
++    }
++
+     if (caseTypeFilters && caseTypeFilters.length > 0) {
+         // Neste momento a API guarda como tags
+         query = query.overlaps('tags', caseTypeFilters)
+@@ -137,7 +160,7 @@ export async function getUniqueFilters() {
+ 
+     if (error || !data) {
+         console.error('Error fetching unique filters:', error)
+-        return { authorities: [], industries: [], statuses: [], tags: [], geographies: [], companies: [], decades: [] }
++        return { authorities: [], industries: [], statuses: [], tags: [], geographies: [], companies: [], decades: [], timeframes: [] }
+     }
+ 
+     const authorities = new Set<string>()
+@@ -177,6 +200,8 @@ export async function getUniqueFilters() {
+         'Platform regulation'
+     ];
+ 
++    const timeframes = ['last_5_years', 'last_20_years'];
++
+     return {
+         authorities: Array.from(authorities).sort(),
+         industries: Array.from(industries).sort(),
+@@ -184,7 +209,8 @@ export async function getUniqueFilters() {
+         geographies: Array.from(geographies).sort(),
+         companies: Array.from(companies).sort(),
+         decades: Array.from(decades).sort().reverse(),
+-        tags: caseTypes
++        tags: caseTypes,
++        timeframes: timeframes
+     }
+ }
+ 
+diff --git a/src/app/admin/AdminUI.tsx b/src/app/admin/AdminUI.tsx
+index 6554106..deb673b 100644
+--- a/src/app/admin/AdminUI.tsx
++++ b/src/app/admin/AdminUI.tsx
+@@ -1,7 +1,7 @@
+ 'use client'
+ 
+ import { useLanguage } from '@/i18n/LanguageContext'
+-import { addUserManually, importUsersCSV, approveUser, rejectUser, updateUserRole, deleteActiveUser, addCaseManually, editCaseAction, deleteCaseAction } from './actions'
++import { addUserManually, importUsersCSV, approveUser, rejectUser, updateUserRole, deleteActiveUser, addCaseManually, editCaseAction, deleteCaseAction, toggleFavoriteCase } from './actions'
+ import CustomSelect from '@/components/ui/CustomSelect'
+ import EditCaseModal from '@/components/EditCaseModal'
+ import { useState } from 'react'
+@@ -12,6 +12,7 @@ type UserData = {
+     role: string;
+     status: string;
+     created_at: string;
++    last_sign_in_at?: string;
+ }
+ 
+ type CompactCase = {
+@@ -20,6 +21,7 @@ type CompactCase = {
+     authority: string;
+     status: string;
+     created_at: string;
++    is_favorite: boolean;
+ }
+ 
+ export default function AdminUI({
+@@ -157,6 +159,7 @@ export default function AdminUI({
+                                 <th className="px-6 py-3 text-left font-semibold text-dark-slate">{tAdmin.table_email}</th>
+                                 <th className="px-6 py-3 text-left font-semibold text-dark-slate">{tAdmin.table_role}</th>
+                                 <th className="px-6 py-3 text-left font-semibold text-dark-slate">{tAdmin.table_reg_date}</th>
++                                <th className="px-6 py-3 text-left font-semibold text-dark-slate">{tAdmin.table_last_visit}</th>
+                                 <th className="px-6 py-3 text-right font-semibold text-dark-slate">{tAdmin.table_actions}</th>
+                             </tr>
+                         </thead>
+@@ -191,6 +194,14 @@ export default function AdminUI({
+                                     <td className="px-6 py-4 text-dark-slate/70">
+                                         {new Date(user.created_at).toLocaleDateString('pt-PT')}
+                                     </td>
++                                    <td className="px-6 py-4 text-dark-slate/70 text-xs">
++                                        {user.last_sign_in_at ? (
++                                            <>
++                                                <div>{new Date(user.last_sign_in_at).toLocaleDateString('pt-PT')}</div>
++                                                <div className="text-dark-slate/50">{new Date(user.last_sign_in_at).toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' })}</div>
++                                            </>
++                                        ) : tAdmin.never}
++                                    </td>
+                                     <td className="px-6 py-4 text-right">
+                                         <form action={deleteActiveUser}>
+                                             <input type="hidden" name="userId" value={user.id} />
+@@ -242,6 +253,21 @@ export default function AdminUI({
+                                     </td>
+                                     <td className="px-6 py-3 text-right">
+                                         <div className="flex items-center justify-end gap-2">
++                                            <form action={toggleFavoriteCase}>
++                                                <input type="hidden" name="caseId" value={c.id} />
++                                                <input type="hidden" name="currentStatus" value={c.is_favorite ? 'true' : 'false'} />
++                                                <button type="submit" title={c.is_favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'} className="p-1 rounded-full transition-colors hover:bg-gray-100 group">
++                                                    {c.is_favorite ? (
++                                                        <svg className="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
++                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
++                                                        </svg>
++                                                    ) : (
++                                                        <svg className="w-5 h-5 text-gray-400 group-hover:text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
++                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
++                                                        </svg>
++                                                    )}
++                                                </button>
++                                            </form>
+                                             <button 
+                                                 onClick={() => setEditingCaseId(c.id)}
+                                                 className="text-xs text-primary-blue hover:text-blue-800 font-semibold transition-colors bg-blue-50/50 hover:bg-blue-100 px-3 py-1.5 rounded"
+diff --git a/src/app/admin/actions.ts b/src/app/admin/actions.ts
+index 2b39438..b6cf671 100644
+--- a/src/app/admin/actions.ts
++++ b/src/app/admin/actions.ts
+@@ -250,3 +250,24 @@ export async function editCaseAction(formData: FormData) {
+     revalidatePath('/')
+     revalidatePath('/admin')
+ }
++
++export async function toggleFavoriteCase(formData: FormData) {
++    const caseId = formData.get('caseId') as string
++    const currentStatus = formData.get('currentStatus') === 'true'
++
++    if (!caseId) return;
++
++    const admin = createAdminClient()
++    const { error: dbError } = await admin.from('Cases').update({
++        is_favorite: !currentStatus
++    }).eq('id', caseId)
++
++    if (dbError) {
++        console.error('Error toggling case favorite status:', dbError)
++        return;
++    }
++
++    revalidatePath('/')
++    revalidatePath('/admin')
++}
++
+diff --git a/src/app/admin/page.tsx b/src/app/admin/page.tsx
+index 7e95964..186a94a 100644
+--- a/src/app/admin/page.tsx
++++ b/src/app/admin/page.tsx
+@@ -15,14 +15,30 @@ async function getUsers() {
+         console.error('Error fetching users:', error)
+         return []
+     }
+-    return data || []
++
++    const { data: authData, error: authError } = await supabase.auth.admin.listUsers()
++    if (authError) {
++        console.error('Error fetching auth users:', authError)
++    }
++
++    const authMap = new Map()
++    if (authData && authData.users) {
++        authData.users.forEach(u => {
++            authMap.set(u.id, u.last_sign_in_at)
++        })
++    }
++
++    return (data || []).map(u => ({
++        ...u,
++        last_sign_in_at: authMap.get(u.id) || null
++    }))
+ }
+ 
+ async function getCasesForAdmin() {
+     const supabase = createAdminClient()
+     const { data, error } = await supabase
+         .from('Cases')
+-        .select('id, title, authority, status, created_at')
++        .select('id, title, authority, status, created_at, is_favorite')
+         .order('created_at', { ascending: false })
+ 
+     if (error) {
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index b4bf8f1..a515a1c 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -17,6 +17,7 @@ export default async function Home(props: {
+     sortBy?: string
+     page?: string
+     limit?: string
++    timeframe?: string
+   }>
+ }) {
+   const searchParams = await props.searchParams
+@@ -29,6 +30,7 @@ export default async function Home(props: {
+   const geographies = searchParams?.geography ? searchParams.geography.split(',') : []
+   const companies = searchParams?.company ? searchParams.company.split(',') : []
+   const decades = searchParams?.decade ? searchParams.decade.split(',') : []
++  const timeframes = searchParams?.timeframe ? searchParams.timeframe.split(',') : []
+   const sortBy = searchParams?.sortBy || 'recent'
+   const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1
+   const limit = searchParams?.limit ? parseInt(searchParams.limit, 10) : 20
+@@ -43,7 +45,7 @@ export default async function Home(props: {
+     }
+   }
+ 
+-  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy, page, limit })
++  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, timeframes, sortBy, page, limit })
+ 
+   return (
+     <div className="space-y-8 max-w-7xl mx-auto">
+@@ -65,6 +67,7 @@ export default async function Home(props: {
+           geographies={geographies}
+           companies={companies}
+           decades={decades}
++          timeframes={timeframes}
+           sortBy={sortBy}
+           page={page}
+           limit={limit}
+diff --git a/src/components/CaseCard.tsx b/src/components/CaseCard.tsx
+index 4ac88b1..ddcd4c0 100644
+--- a/src/components/CaseCard.tsx
++++ b/src/components/CaseCard.tsx
+@@ -51,9 +51,16 @@ export default function CaseCard({ data }: { data: CaseMatch }) {
+         <Link href={`/cases/${data.id}`} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-primary-blue rounded-xl">
+             <div className="bg-white rounded-xl border border-light-gray p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group">
+                 <div className="flex justify-between items-start mb-4 gap-2">
+-                    <span className="text-[11px] font-bold px-2 py-1 bg-slate-100 text-dark-slate rounded tracking-wide truncate">
+-                        {data.authority}
+-                    </span>
++                    <div className="flex items-center gap-2">
++                        <span className="text-[11px] font-bold px-2 py-1 bg-slate-100 text-dark-slate rounded tracking-wide truncate">
++                            {data.authority}
++                        </span>
++                        {data.is_favorite && (
++                            <svg className="w-4 h-4 text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
++                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
++                            </svg>
++                        )}
++                    </div>
+                     <span suppressHydrationWarning className="text-[11px] font-semibold text-dark-slate/60 whitespace-nowrap">
+                         {displayDate}
+                     </span>
+diff --git a/src/components/CaseDetailUI.tsx b/src/components/CaseDetailUI.tsx
+index 96c3cf5..eeca0c5 100644
+--- a/src/components/CaseDetailUI.tsx
++++ b/src/components/CaseDetailUI.tsx
+@@ -17,8 +17,27 @@ type CaseData = {
+     status: string;
+     fine_amount: string | null;
+     links: string[];
++    // New fields
++    outcome?: string;
++    market?: string;
++    conduct?: string;
++    theory_of_harm?: string;
++    economics_issues?: string;
++    decision?: string;
++    is_favorite?: boolean | null;
+ }
+ 
++const Card = ({ title, children, className = "" }: { title: string, children: React.ReactNode, className?: string }) => (
++    <div className={`bg-[#DBF3FA] rounded-xl p-6 md:p-8 flex flex-col ${className}`}>
++        <h2 className="text-xl md:text-2xl font-bold mb-4 font-heading text-dark-slate border-b-2 border-primary-blue/20 pb-2">
++            {title}
++        </h2>
++        <div className="flex-grow text-dark-slate/80 prose prose-sm prose-slate max-w-none">
++            {children}
++        </div>
++    </div>
++);
++
+ export default function CaseDetailUI({ caseData }: { caseData: CaseData }) {
+     const { t, lang } = useLanguage()
+ 
+@@ -46,103 +65,94 @@ export default function CaseDetailUI({ caseData }: { caseData: CaseData }) {
+     }
+ 
+     return (
+-        <main className="max-w-4xl mx-auto py-12 px-6">
++        <main className="max-w-5xl mx-auto py-12 px-6">
+             <Link href="/" className="text-primary-blue hover:text-blue-700 hover:underline mb-8 inline-flex items-center gap-2 font-medium">
+                 &larr; {t.case_detail.back}
+             </Link>
+ 
+-            <article className="bg-white rounded-2xl shadow-sm border border-light-gray p-8 md:p-12">
+-                <header className="mb-10">
+-                    <div className="flex flex-wrap items-center gap-3 mb-6">
+-                        <span className="text-xs font-bold px-3 py-1.5 bg-slate-100 text-dark-slate rounded-md tracking-wider uppercase">
+-                            {caseData.authority}
+-                        </span>
+-                        <span className="text-xs font-semibold text-dark-slate/60">
+-                            {displayDate}
+-                        </span>
+-                    </div>
++            <h1 className="text-4xl md:text-5xl font-heading font-bold text-dark-slate leading-tight mb-4 flex items-center flex-wrap gap-2 md:gap-3">
++                {caseData.is_favorite && (
++                    <svg className="w-8 h-8 md:w-10 md:h-10 text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
++                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
++                    </svg>
++                )}
++                <span>{caseData.title}</span>
++            </h1>
++            
+ 
+-                    <h1 className="text-3xl md:text-4xl font-heading font-bold text-primary-blue leading-tight mb-6">
+-                        {caseData.title}
+-                    </h1>
+ 
+-                    <div className="flex flex-wrap gap-2">
+-                        <span className="text-xs uppercase font-bold px-3 py-1.5 bg-blue-50 text-primary-blue rounded border border-blue-100">
+-                            {caseData.industry}
+-                        </span>
++            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
++                {/* Overview Card */}
++                <Card title="Overview:">
++                    <MarkdownRenderer content={`- **Case**: ${caseData.title}\n- **Authority**: ${caseData.authority}\n- **Decision**: ${displayDate}\n${caseData.outcome ? `- **Outcome**: ${caseData.outcome}` : ''}`} />
++                </Card>
+ 
+-                        {caseData.tags?.map((tag, i) => (
+-                            <span key={`tag-${i}`} className="text-xs uppercase font-bold px-3 py-1.5 bg-slate-50 text-gray-600 rounded border border-slate-200">
+-                                {tag}
+-                            </span>
+-                        ))}
+-                    </div>
+-                </header>
++                {/* Market Card */}
++                <Card title="Market:">
++                    <MarkdownRenderer content={caseData.market || "No data provided."} />
++                </Card>
+ 
+-                <div className="mb-12">
+-                    <h2 className="text-xl font-bold mb-6 border-b border-light-gray pb-2 text-primary-blue font-heading tracking-wide">
+-                        {t.case_detail.summary_title}
+-                    </h2>
++                {/* Conduct Card */}
++                <Card title="Conduct:">
++                    <MarkdownRenderer content={caseData.conduct || "No data provided."} />
++                </Card>
+ 
+-                    <MarkdownRenderer content={caseData.summary} />
+-                </div>
++                {/* Theory of Harm Card */}
++                <Card title="Theory of Harm:">
++                    <MarkdownRenderer content={caseData.theory_of_harm || "No data provided."} />
++                </Card>
++
++                {/* Economics Issues Card */}
++                <Card title="Economics Issues:">
++                    <MarkdownRenderer content={caseData.economics_issues || "No data provided."} />
++                </Card>
+ 
+-                <div className="grid md:grid-cols-2 gap-8 border-t border-light-gray pt-8">
+-                    <div>
+-                        <h3 className="text-sm font-bold text-dark-slate/50 uppercase tracking-widest mb-3">
+-                            {t.case_detail.parties}
+-                        </h3>
+-                        <ul className="space-y-2">
+-                            {caseData.parties_involved?.map((p, i) => (
+-                                <li key={i} className="font-medium text-dark-slate flex items-center gap-2">
+-                                    <span className="w-1.5 h-1.5 rounded-full bg-primary-blue/30 scale-up"></span>
+-                                    {p}
+-                                </li>
+-                            ))}
+-                        </ul>
+-                    </div>
+-
+-                    <div>
+-                        <h3 className="text-sm font-bold text-dark-slate/50 uppercase tracking-widest mb-3">
+-                            {t.case_detail.status_fines}
+-                        </h3>
+-                        <div className="flex flex-col gap-3 items-start">
+-                            <span className="text-sm font-bold px-3 py-1 bg-slate-100 rounded text-dark-slate border border-light-gray uppercase">
+-                                {t.sidebar.status_options[caseData.status.toLowerCase() as keyof typeof t.sidebar.status_options] || caseData.status}
+-                            </span>
+-                            {caseData.fine_amount && (
+-                                <span className="text-sm font-bold px-3 py-1 bg-red-50 text-red-700 rounded border border-red-200 shadow-sm animate-pulse-soft">
+-                                    {t.case_detail.fine}: {caseData.fine_amount}
+-                                </span>
+-                            )}
++                {/* Decision Card */}
++                <Card title="Decision:">
++                    <MarkdownRenderer content={caseData.decision || "No data provided."} />
++                    {caseData.fine_amount && (
++                        <div className="mt-4 inline-block font-bold px-3 py-1 bg-red-50 text-red-700 rounded border border-red-200">
++                            {t.case_detail.fine}: {caseData.fine_amount}
+                         </div>
+-                    </div>
++                    )}
++                </Card>
++            </div>
++
++            {/* Sources Card (Full Width) */}
++            <Card title="Sources:" className="w-full">
++                <div className="flex flex-col gap-3">
++                    {caseData.links && caseData.links.length > 0 ? (
++                        caseData.links.map((link, index) => (
++                            <a
++                                key={index}
++                                href={link}
++                                target="_blank"
++                                rel="noopener noreferrer"
++                                className="text-primary-blue hover:text-blue-700 font-medium inline-flex items-center gap-2 transition-colors w-fit group"
++                            >
++                                <svg className="w-4 h-4 text-blue-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
++                                {t.case_detail.source} #{index + 1}: {new URL(link).hostname.replace('www.', '')}
++                            </a>
++                        ))
++                    ) : (
++                        <p className="italic font-medium">{t.case_detail.no_sources}</p>
++                    )}
+                 </div>
++            </Card>
+ 
+-                <div className="mt-12 pt-8 border-t border-light-gray">
+-                    <h3 className="text-sm font-bold text-dark-slate/50 uppercase tracking-widest mb-4">
+-                        {t.case_detail.official_sources}
+-                    </h3>
+-                    <div className="flex flex-col gap-3">
+-                        {caseData.links && caseData.links.length > 0 ? (
+-                            caseData.links.map((link, index) => (
+-                                <a
+-                                    key={index}
+-                                    href={link}
+-                                    target="_blank"
+-                                    rel="noopener noreferrer"
+-                                    className="text-primary-blue hover:text-blue-700 font-medium inline-flex items-center gap-2 transition-colors w-fit group"
+-                                >
+-                                    <svg className="w-4 h-4 text-blue-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+-                                    {t.case_detail.source} #{index + 1}: {new URL(link).hostname.replace('www.', '')}
+-                                </a>
+-                            ))
+-                        ) : (
+-                            <p className="text-dark-slate/60 text-sm italic">{t.case_detail.no_sources}</p>
+-                        )}
+-                    </div>
++            <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-light-gray pt-6">
++                {/* Meta details like tags and industry for visual context at bottom */}
++                <div className="flex flex-wrap items-center gap-2">
++                    <span className="text-xs uppercase font-bold px-3 py-1.5 bg-blue-50 text-primary-blue rounded border border-blue-100">
++                        {caseData.industry}
++                    </span>
++                    {caseData.tags?.map((tag, i) => (
++                        <span key={`tag-${i}`} className="text-xs uppercase font-bold px-3 py-1.5 bg-slate-50 text-gray-600 rounded border border-slate-200">
++                            {tag}
++                        </span>
++                    ))}
+                 </div>
+-            </article>
++            </div>
+         </main>
+     )
+ }
+diff --git a/src/components/CasesFeed.tsx b/src/components/CasesFeed.tsx
+index 9977e5a..3f59e38 100644
+--- a/src/components/CasesFeed.tsx
++++ b/src/components/CasesFeed.tsx
+@@ -13,6 +13,7 @@ export async function CasesFeed({
+     geographies,
+     companies,
+     decades,
++    timeframes,
+     sortBy,
+     page = 1,
+     limit = 20
+@@ -25,11 +26,12 @@ export async function CasesFeed({
+     geographies: string[]
+     companies: string[]
+     decades: string[]
++    timeframes: string[]
+     sortBy: string
+     page?: number
+     limit?: number
+ }) {
+-    const { data: casesMatch, count } = await getCases(query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy, page, limit)
++    const { data: casesMatch, count } = await getCases(query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, timeframes, sortBy, page, limit)
+ 
+     const startItem = count === 0 ? 0 : (page - 1) * limit + 1;
+     const endItem = count === 0 ? 0 : startItem + casesMatch.length - 1;
+diff --git a/src/components/Sidebar.tsx b/src/components/Sidebar.tsx
+index 3d451a1..9057c98 100644
+--- a/src/components/Sidebar.tsx
++++ b/src/components/Sidebar.tsx
+@@ -2,7 +2,7 @@ import { getUniqueFilters } from '@/app/actions'
+ import SidebarUI from './SidebarUI'
+ 
+ export default async function Sidebar() {
+-    const { authorities, industries, statuses, tags, geographies, companies, decades } = await getUniqueFilters()
++    const { authorities, industries, statuses, tags, geographies, companies, decades, timeframes } = await getUniqueFilters()
+ 
+     return (
+         <SidebarUI
+@@ -13,6 +13,7 @@ export default async function Sidebar() {
+             GEOGRAPHIES={geographies}
+             COMPANIES={companies}
+             DECADES={decades}
++            TIMEFRAMES={timeframes || []}
+         />
+     )
+ }
+diff --git a/src/components/SidebarUI.tsx b/src/components/SidebarUI.tsx
+index 2b3c78f..3645875 100644
+--- a/src/components/SidebarUI.tsx
++++ b/src/components/SidebarUI.tsx
+@@ -12,9 +12,10 @@ type SidebarUIProps = {
+     GEOGRAPHIES: string[]
+     COMPANIES: string[]
+     DECADES: string[]
++    TIMEFRAMES: string[]
+ }
+ 
+-export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEOGRAPHIES, COMPANIES, DECADES }: SidebarUIProps) {
++export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEOGRAPHIES, COMPANIES, DECADES, TIMEFRAMES }: SidebarUIProps) {
+     const router = useRouter()
+     const searchParams = useSearchParams()
+     const pathname = usePathname()
+@@ -34,8 +35,9 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
+     const activeGeographies = searchParams.get('geography')?.split(',') || []
+     const activeCompanies = searchParams.get('company')?.split(',') || []
+     const activeDecades = searchParams.get('decade')?.split(',') || []
++    const activeTimeframes = searchParams.get('timeframe')?.split(',') || []
+ 
+-    const numActiveFilters = activeAuthorities.length + activeIndustries.length + activeStatuses.length + activeTags.length + activeGeographies.length + activeCompanies.length + activeDecades.length;
++    const numActiveFilters = activeAuthorities.length + activeIndustries.length + activeStatuses.length + activeTags.length + activeGeographies.length + activeCompanies.length + activeDecades.length + activeTimeframes.length;
+ 
+     const handleFilterChange = (key: string, value: string, checked: boolean, currentList: string[]) => {
+         let newList = [...currentList]
+@@ -102,6 +104,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
+                                     p.delete('geography')
+                                     p.delete('company')
+                                     p.delete('decade')
++                                    p.delete('timeframe')
+                                     router.replace(`/?${p.toString()}`)
+                                 }}
+                                 className="text-[10px] bg-blue-50 text-primary-blue hover:bg-blue-100 uppercase font-bold px-3 py-1.5 rounded-md transition-all active:scale-95 active:bg-blue-200 shadow-sm hover:shadow inline-block"
+@@ -191,6 +194,31 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
+                         </div>
+                     </div>
+ 
++                    <div>
++                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.timeframe}</h3>
++                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
++                            {TIMEFRAMES.map((timeframe) => (
++                                <label key={timeframe} className="flex items-center gap-3 cursor-pointer group">
++                                    <div className="relative flex items-center justify-center">
++                                        <input
++                                            type="checkbox"
++                                            checked={activeTimeframes.includes(timeframe)}
++                                            onChange={(e) => handleFilterChange('timeframe', timeframe, e.target.checked, activeTimeframes)}
++                                            className="peer sr-only"
++                                        />
++                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
++                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
++                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
++                                        </svg>
++                                    </div>
++                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">
++                                        {t.sidebar.timeframe_options[timeframe as keyof typeof t.sidebar.timeframe_options] || timeframe}
++                                    </span>
++                                </label>
++                            ))}
++                        </div>
++                    </div>
++
+                     <div>
+                         <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.status}</h3>
+                         <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
+diff --git a/src/i18n/en.ts b/src/i18n/en.ts
+index 7316764..11b1979 100644
+--- a/src/i18n/en.ts
++++ b/src/i18n/en.ts
+@@ -24,7 +24,12 @@ export const en = {
+             blocked: "Blocked"
+         },
+         see_results: "See Results",
+-        see_results_count: "See Results ({{count}} Filters)"
++        see_results_count: "See Results ({{count}} Filters)",
++        timeframe: "Timeframe",
++        timeframe_options: {
++            last_5_years: "< 5 years",
++            last_20_years: "< 20 years"
++        }
+     },
+     home: {
+         hero_title: "Antitrust Case Library",
+@@ -89,6 +94,8 @@ export const en = {
+         active_users_title: "Active Users ({{count}})",
+         table_role: "Role",
+         table_reg_date: "Registration Date",
++        table_last_visit: "Last Visit",
++        never: "Never",
+         btn_save: "Save",
+         btn_delete: "Delete",
+         add_case_title: "Add New Case Study (Manual)",
+diff --git a/src/i18n/pt.ts b/src/i18n/pt.ts
+index 868d2f9..07d6cf6 100644
+--- a/src/i18n/pt.ts
++++ b/src/i18n/pt.ts
+@@ -26,7 +26,12 @@ export const pt: TranslationsType = {
+             blocked: "Bloqueado"
+         },
+         see_results: "Ver Resultados",
+-        see_results_count: "Ver Resultados ({{count}} Filtros)"
++        see_results_count: "Ver Resultados ({{count}} Filtros)",
++        timeframe: "Período",
++        timeframe_options: {
++            last_5_years: "< 5 anos",
++            last_20_years: "< 20 anos"
++        }
+     },
+     home: {
+         hero_title: "Antitrust Case Library",
+@@ -91,6 +96,8 @@ export const pt: TranslationsType = {
+         active_users_title: "Utilizadores Ativos ({{count}})",
+         table_role: "Atribuição",
+         table_reg_date: "Data Registo",
++        table_last_visit: "Última Visita",
++        never: "Nunca",
+         btn_save: "Guardar",
+         btn_delete: "Apagar",
+         add_case_title: "Adicionar Novo Caso de Estudo (Manual)",
+diff --git a/src/scripts/import-to-supabase.ts b/src/scripts/import-to-supabase.ts
+index da19570..4f61fc2 100644
+--- a/src/scripts/import-to-supabase.ts
++++ b/src/scripts/import-to-supabase.ts
+@@ -25,6 +25,13 @@ type CaseData = {
+     decision_date: string | null;
+     links: string[];
+     timeline_events: TimelineEvent[];
++    // New fields
++    outcome?: string;
++    market?: string;
++    conduct?: string;
++    theory_of_harm?: string;
++    economics_issues?: string;
++    decision?: string;
+ };
+ 
+ async function runImport() {
+@@ -74,7 +81,13 @@ async function runImport() {
+                     parties_involved: c.parties_involved,
+                     fine_amount: c.fine_amount,
+                     decision_date: c.decision_date || null,
+-                    links: c.links
++                    links: c.links,
++                    outcome: c.outcome,
++                    market: c.market,
++                    conduct: c.conduct,
++                    theory_of_harm: c.theory_of_harm,
++                    economics_issues: c.economics_issues,
++                    decision: c.decision
+                 })
+                 .eq("id", existingCase.id)
+                 .select("id")
+@@ -97,7 +110,13 @@ async function runImport() {
+                     parties_involved: c.parties_involved,
+                     fine_amount: c.fine_amount,
+                     decision_date: c.decision_date || null,
+-                    links: c.links
++                    links: c.links,
++                    outcome: c.outcome,
++                    market: c.market,
++                    conduct: c.conduct,
++                    theory_of_harm: c.theory_of_harm,
++                    economics_issues: c.economics_issues,
++                    decision: c.decision
+                 })
+                 .select('id')
+                 .single();
+diff --git a/src/scripts/maintain-cases.ts b/src/scripts/maintain-cases.ts
+index 04b77f6..b54255c 100644
+--- a/src/scripts/maintain-cases.ts
++++ b/src/scripts/maintain-cases.ts
+@@ -22,6 +22,13 @@ type CaseData = {
+     decision_date: string | null;
+     links: string[];
+     timeline_events: TimelineEvent[];
++    // New fields
++    outcome?: string;
++    market?: string;
++    conduct?: string;
++    theory_of_harm?: string;
++    economics_issues?: string;
++    decision?: string;
+ };
+ 
+ type CaseUpdateInfo = {
+diff --git a/src/scripts/seed-bulk.ts b/src/scripts/seed-bulk.ts
+index e51251b..028447a 100644
+--- a/src/scripts/seed-bulk.ts
++++ b/src/scripts/seed-bulk.ts
+@@ -13,7 +13,7 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+ // Define a estrutura desejada baseada no nosso schema (semelhante ao test-ai.ts)
+ type CaseExtraction = {
+     title: string;
+-    summary: string;
++    summary: string; // Used as the Outcome/General overview
+     authority: string;
+     status: string;
+     industry: string;
+@@ -23,6 +23,13 @@ type CaseExtraction = {
+     decision_date: string | null;
+     links: string[];
+     timeline_events: Array<{ date: string; description: string }>;
++    // New fields
++    outcome?: string;
++    market?: string;
++    conduct?: string;
++    theory_of_harm?: string;
++    economics_issues?: string;
++    decision?: string;
+ };
+ 
+ async function processRowWithAI(row: any): Promise<CaseExtraction | null> {
+@@ -42,7 +49,13 @@ Expected JSON structure:
+   "authority": "Agency (e.g., EC, FTC, CMA, DOJ, Courts)",
+   "status": "Current status (e.g., Open, Closed, Blocked, Fined)",
+   "industry": "Broad industry sector (e.g., Technology, Healthcare, Entertainment)",
+-  "summary": "Must be AT LEAST 10 long, comprehensive paragraphs recounting the case formatted in RICH MARKDOWN. The FIRST paragraph MUST be a short, direct summary of the entire case. You MUST use Markdown Headings (e.g. ### Background, ### Theory of Harm, ### Outcome), bulleted lists, and **bold text** to make it extremely engaging and readable. If the case involves complex timelines, structural market changes, or financial transfers, you MUST include exactly ONE visually appealing and complex SVG diagram using standard Markdown syntax (\`\`\`svg\\n<svg>...</svg>\\n\`\`\`) to visually explain the relationships or timelines. DO NOT output a mermaid diagram, it MUST be raw SVG. CRITICAL RULE: YOU MUST BE 100% FACTUAL. DO NOT HALLUCINATE ANY DATES, COMPANIES, OR FINES. If you do not know a detail for a fact, skip it. You MUST cite your claims implicitly or explicitly based on real-world knowledge. Be extremely thorough, elegant, and legally sound. DO NOT write short summaries.",
++  "summary": "Must be exactly ONE very short paragraph (3-4 sentences max). This will be used as the preview text for the case card on the home page list. DO NOT generate any Markdown headings or SVG diagrams here.",
++  "outcome": "MANDATORY. A single short sentence (max 15 words) describing the ultimate outcome of the case. E.g., 'Google found to have illegal monopoly in search.'",
++  "market": "MANDATORY. Describe the relevant markets, exclusions, market share, barriers to entry, and competitors. Use RICH MARKDOWN (bulleted lists, bolding). Example: '- **General search engines**\\n- **Market share**: ~90% desktop'",
++  "conduct": "MANDATORY. Detail the specific anti-competitive behavior or agreements. Use RICH MARKDOWN.",
++  "theory_of_harm": "MANDATORY. Detail exactly why the conduct is harmful (e.g., exclusion of competitors, reduced innovation, user lock-in). Use RICH MARKDOWN.",
++  "economics_issues": "MANDATORY. Describe the structural/economic issues like Network effects, Economies of scale, Switching costs, high entry barriers. Use RICH MARKDOWN.",
++  "decision": "MANDATORY. Detail the judicial/agency decision, violation of laws (e.g. Sherman Act Section 2), and remedies natively. Use RICH MARKDOWN.",
+   "tags": ["Array", "Of", "Relevant", "Keywords", "like Merger Control, Article 102, Cartel"],
+   "parties_involved": ["Array", "Of", "Companies", "Involved"],
+   "fine_amount": "Total fine amount as a string (e.g., '€2.42 billion') or null if none.",

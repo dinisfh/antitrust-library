@@ -22,6 +22,13 @@ type CaseData = {
     decision_date: string | null;
     links: string[];
     timeline_events: TimelineEvent[];
+    // New fields
+    outcome?: string;
+    market?: string;
+    conduct?: string;
+    theory_of_harm?: string;
+    economics_issues?: string;
+    decision?: string;
 };
 
 type CaseUpdateInfo = {

@@ -13,6 +13,7 @@ export async function CasesFeed({
     geographies,
     companies,
     decades,
+    timeframes,
     sortBy,
     page = 1,
     limit = 20
@@ -25,11 +26,12 @@ export async function CasesFeed({
     geographies: string[]
     companies: string[]
     decades: string[]
+    timeframes: string[]
     sortBy: string
     page?: number
     limit?: number
 }) {
-    const { data: casesMatch, count } = await getCases(query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy, page, limit)
+    const { data: casesMatch, count } = await getCases(query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, timeframes, sortBy, page, limit)
 
     const startItem = count === 0 ? 0 : (page - 1) * limit + 1;
     const endItem = count === 0 ? 0 : startItem + casesMatch.length - 1;

@@ -13,7 +13,7 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 // Define a estrutura desejada baseada no nosso schema (semelhante ao test-ai.ts)
 type CaseExtraction = {
     title: string;
-    summary: string;
+    summary: string; // Used as the Outcome/General overview
     authority: string;
     status: string;
     industry: string;
@@ -23,6 +23,13 @@ type CaseExtraction = {
     decision_date: string | null;
     links: string[];
     timeline_events: Array<{ date: string; description: string }>;
+    // New fields
+    outcome?: string;
+    market?: string;
+    conduct?: string;
+    theory_of_harm?: string;
+    economics_issues?: string;
+    decision?: string;
 };
 
 async function processRowWithAI(row: any): Promise<CaseExtraction | null> {
@@ -42,7 +49,13 @@ Expected JSON structure:
   "authority": "Agency (e.g., EC, FTC, CMA, DOJ, Courts)",
   "status": "Current status (e.g., Open, Closed, Blocked, Fined)",
   "industry": "Broad industry sector (e.g., Technology, Healthcare, Entertainment)",
-  "summary": "Must be AT LEAST 10 long, comprehensive paragraphs recounting the case formatted in RICH MARKDOWN. The FIRST paragraph MUST be a short, direct summary of the entire case. You MUST use Markdown Headings (e.g. ### Background, ### Theory of Harm, ### Outcome), bulleted lists, and **bold text** to make it extremely engaging and readable. If the case involves complex timelines, structural market changes, or financial transfers, you MUST include exactly ONE visually appealing and complex SVG diagram using standard Markdown syntax (\`\`\`svg\\n<svg>...</svg>\\n\`\`\`) to visually explain the relationships or timelines. DO NOT output a mermaid diagram, it MUST be raw SVG. CRITICAL RULE: YOU MUST BE 100% FACTUAL. DO NOT HALLUCINATE ANY DATES, COMPANIES, OR FINES. If you do not know a detail for a fact, skip it. You MUST cite your claims implicitly or explicitly based on real-world knowledge. Be extremely thorough, elegant, and legally sound. DO NOT write short summaries.",
+  "summary": "Must be exactly ONE very short paragraph (3-4 sentences max). This will be used as the preview text for the case card on the home page list. DO NOT generate any Markdown headings or SVG diagrams here.",
+  "outcome": "MANDATORY. A single short sentence (max 15 words) describing the ultimate outcome of the case. E.g., 'Google found to have illegal monopoly in search.'",
+  "market": "MANDATORY. Describe the relevant markets, exclusions, market share, barriers to entry, and competitors. Use RICH MARKDOWN (bulleted lists, bolding). Example: '- **General search engines**\\n- **Market share**: ~90% desktop'",
+  "conduct": "MANDATORY. Detail the specific anti-competitive behavior or agreements. Use RICH MARKDOWN.",
+  "theory_of_harm": "MANDATORY. Detail exactly why the conduct is harmful (e.g., exclusion of competitors, reduced innovation, user lock-in). Use RICH MARKDOWN.",
+  "economics_issues": "MANDATORY. Describe the structural/economic issues like Network effects, Economies of scale, Switching costs, high entry barriers. Use RICH MARKDOWN.",
+  "decision": "MANDATORY. Detail the judicial/agency decision, violation of laws (e.g. Sherman Act Section 2), and remedies natively. Use RICH MARKDOWN.",
   "tags": ["Array", "Of", "Relevant", "Keywords", "like Merger Control, Article 102, Cartel"],
   "parties_involved": ["Array", "Of", "Companies", "Involved"],
   "fine_amount": "Total fine amount as a string (e.g., '€2.42 billion') or null if none.",

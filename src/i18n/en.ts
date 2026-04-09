@@ -24,7 +24,12 @@ export const en = {
             blocked: "Blocked"
         },
         see_results: "See Results",
-        see_results_count: "See Results ({{count}} Filters)"
+        see_results_count: "See Results ({{count}} Filters)",
+        timeframe: "Timeframe",
+        timeframe_options: {
+            last_5_years: "< 5 years",
+            last_20_years: "< 20 years"
+        }
     },
     home: {
         hero_title: "Antitrust Case Library",
@@ -89,6 +94,8 @@ export const en = {
         active_users_title: "Active Users ({{count}})",
         table_role: "Role",
         table_reg_date: "Registration Date",
+        table_last_visit: "Last Visit",
+        never: "Never",
         btn_save: "Save",
         btn_delete: "Delete",
         add_case_title: "Add New Case Study (Manual)",

@@ -15,14 +15,30 @@ async function getUsers() {
         console.error('Error fetching users:', error)
         return []
     }
-    return data || []
+
+    const { data: authData, error: authError } = await supabase.auth.admin.listUsers()
+    if (authError) {
+        console.error('Error fetching auth users:', authError)
+    }
+
+    const authMap = new Map()
+    if (authData && authData.users) {
+        authData.users.forEach(u => {
+            authMap.set(u.id, u.last_sign_in_at)
+        })
+    }
+
+    return (data || []).map(u => ({
+        ...u,
+        last_sign_in_at: authMap.get(u.id) || null
+    }))
 }
 
 async function getCasesForAdmin() {
     const supabase = createAdminClient()
     const { data, error } = await supabase
         .from('Cases')
-        .select('id, title, authority, status, created_at')
+        .select('id, title, authority, status, created_at, is_favorite')
         .order('created_at', { ascending: false })
 
     if (error) {

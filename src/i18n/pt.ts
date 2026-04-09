@@ -26,7 +26,12 @@ export const pt: TranslationsType = {
             blocked: "Bloqueado"
         },
         see_results: "Ver Resultados",
-        see_results_count: "Ver Resultados ({{count}} Filtros)"
+        see_results_count: "Ver Resultados ({{count}} Filtros)",
+        timeframe: "Período",
+        timeframe_options: {
+            last_5_years: "< 5 anos",
+            last_20_years: "< 20 anos"
+        }
     },
     home: {
         hero_title: "Antitrust Case Library",
@@ -91,6 +96,8 @@ export const pt: TranslationsType = {
         active_users_title: "Utilizadores Ativos ({{count}})",
         table_role: "Atribuição",
         table_reg_date: "Data Registo",
+        table_last_visit: "Última Visita",
+        never: "Nunca",
         btn_save: "Guardar",
         btn_delete: "Apagar",
         add_case_title: "Adicionar Novo Caso de Estudo (Manual)",

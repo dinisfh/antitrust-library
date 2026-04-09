@@ -1,0 +1,8 @@
+feat: add timeframe filters, user last visit tracking, favorite cases and revamp case UI
+
+- Added the timeframe filtering logic (e.g., < 5 years, < 20 years) across sidebar and backend.
+- Updated the Admin Dashboard to track and display the user's "Last Visit" using Supabase auth data.
+- Implemented "Favorite Cases" feature with toggle logic in admin and star indicators in UI.
+- Redesigned CaseDetailUI layout heavily, separating long summaries into clean structured detail cards (Market, Conduct, Theory of Harm, etc.)
+- Refactored ingestion scripts and AI prompt logic to extract granular information fields for the new detail cards.
+- Updated english and portuguese i18n support.

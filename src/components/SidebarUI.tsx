@@ -12,9 +12,10 @@ type SidebarUIProps = {
     GEOGRAPHIES: string[]
     COMPANIES: string[]
     DECADES: string[]
+    TIMEFRAMES: string[]
 }
 
-export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEOGRAPHIES, COMPANIES, DECADES }: SidebarUIProps) {
+export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEOGRAPHIES, COMPANIES, DECADES, TIMEFRAMES }: SidebarUIProps) {
     const router = useRouter()
     const searchParams = useSearchParams()
     const pathname = usePathname()
@@ -34,8 +35,9 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
     const activeGeographies = searchParams.get('geography')?.split(',') || []
     const activeCompanies = searchParams.get('company')?.split(',') || []
     const activeDecades = searchParams.get('decade')?.split(',') || []
+    const activeTimeframes = searchParams.get('timeframe')?.split(',') || []
 
-    const numActiveFilters = activeAuthorities.length + activeIndustries.length + activeStatuses.length + activeTags.length + activeGeographies.length + activeCompanies.length + activeDecades.length;
+    const numActiveFilters = activeAuthorities.length + activeIndustries.length + activeStatuses.length + activeTags.length + activeGeographies.length + activeCompanies.length + activeDecades.length + activeTimeframes.length;
 
     const handleFilterChange = (key: string, value: string, checked: boolean, currentList: string[]) => {
         let newList = [...currentList]
@@ -102,6 +104,7 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
                                     p.delete('geography')
                                     p.delete('company')
                                     p.delete('decade')
+                                    p.delete('timeframe')
                                     router.replace(`/?${p.toString()}`)
                                 }}
                                 className="text-[10px] bg-blue-50 text-primary-blue hover:bg-blue-100 uppercase font-bold px-3 py-1.5 rounded-md transition-all active:scale-95 active:bg-blue-200 shadow-sm hover:shadow inline-block"
@@ -186,6 +189,31 @@ export default function SidebarUI({ AUTHORITIES, INDUSTRIES, STATUSES, TAGS, GEO
                                         </svg>
                                     </div>
                                     <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">{decade}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 className="text-xs font-bold text-dark-slate mb-3 uppercase tracking-wide">{t.sidebar.timeframe}</h3>
+                        <div className="space-y-3 text-sm text-dark-slate/80 max-h-52 overflow-y-auto overflow-x-hidden pr-2">
+                            {TIMEFRAMES.map((timeframe) => (
+                                <label key={timeframe} className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative flex items-center justify-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={activeTimeframes.includes(timeframe)}
+                                            onChange={(e) => handleFilterChange('timeframe', timeframe, e.target.checked, activeTimeframes)}
+                                            className="peer sr-only"
+                                        />
+                                        <div className="w-5 h-5 rounded border-2 border-slate-300 bg-white peer-checked:bg-primary-blue peer-checked:border-primary-blue peer-focus:ring-2 peer-focus:ring-primary-blue/30 transition-all duration-200"></div>
+                                        <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-dark-slate/80 group-hover:text-primary-blue transition-colors select-none">
+                                        {t.sidebar.timeframe_options[timeframe as keyof typeof t.sidebar.timeframe_options] || timeframe}
+                                    </span>
                                 </label>
                             ))}
                         </div>

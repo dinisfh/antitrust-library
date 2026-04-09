@@ -25,6 +25,13 @@ type CaseData = {
     decision_date: string | null;
     links: string[];
     timeline_events: TimelineEvent[];
+    // New fields
+    outcome?: string;
+    market?: string;
+    conduct?: string;
+    theory_of_harm?: string;
+    economics_issues?: string;
+    decision?: string;
 };
 
 async function runImport() {
@@ -74,7 +81,13 @@ async function runImport() {
                     parties_involved: c.parties_involved,
                     fine_amount: c.fine_amount,
                     decision_date: c.decision_date || null,
-                    links: c.links
+                    links: c.links,
+                    outcome: c.outcome,
+                    market: c.market,
+                    conduct: c.conduct,
+                    theory_of_harm: c.theory_of_harm,
+                    economics_issues: c.economics_issues,
+                    decision: c.decision
                 })
                 .eq("id", existingCase.id)
                 .select("id")
@@ -97,7 +110,13 @@ async function runImport() {
                     parties_involved: c.parties_involved,
                     fine_amount: c.fine_amount,
                     decision_date: c.decision_date || null,
-                    links: c.links
+                    links: c.links,
+                    outcome: c.outcome,
+                    market: c.market,
+                    conduct: c.conduct,
+                    theory_of_harm: c.theory_of_harm,
+                    economics_issues: c.economics_issues,
+                    decision: c.decision
                 })
                 .select('id')
                 .single();

@@ -17,6 +17,7 @@ export default async function Home(props: {
     sortBy?: string
     page?: string
     limit?: string
+    timeframe?: string
   }>
 }) {
   const searchParams = await props.searchParams
@@ -29,6 +30,7 @@ export default async function Home(props: {
   const geographies = searchParams?.geography ? searchParams.geography.split(',') : []
   const companies = searchParams?.company ? searchParams.company.split(',') : []
   const decades = searchParams?.decade ? searchParams.decade.split(',') : []
+  const timeframes = searchParams?.timeframe ? searchParams.timeframe.split(',') : []
   const sortBy = searchParams?.sortBy || 'recent'
   const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1
   const limit = searchParams?.limit ? parseInt(searchParams.limit, 10) : 20
@@ -43,7 +45,7 @@ export default async function Home(props: {
     }
   }
 
-  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, sortBy, page, limit })
+  const suspenseKey = JSON.stringify({ query, sectors, authorities, statuses, caseTypes, geographies, companies, decades, timeframes, sortBy, page, limit })
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
@@ -65,6 +67,7 @@ export default async function Home(props: {
           geographies={geographies}
           companies={companies}
           decades={decades}
+          timeframes={timeframes}
           sortBy={sortBy}
           page={page}
           limit={limit}

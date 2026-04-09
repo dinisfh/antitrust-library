@@ -18,6 +18,7 @@ export type CaseMatch = {
     citations_count: number | null
     links: string[]
     created_at: string
+    is_favorite: boolean | null
 }
 
 export async function getCases(
@@ -29,6 +30,7 @@ export async function getCases(
     geographyFilters?: string[],
     companyFilters?: string[],
     decadeFilters?: string[],
+    timeframeFilters?: string[],
     sortBy?: string,
     page: number = 1,
     limit: number = 20
@@ -36,7 +38,7 @@ export async function getCases(
     const supabase = await createClient()
 
     // Atualizado para buscar os novos campos e respeitar o limite, e pedir a contagem otimizada
-    let query = supabase.from('Cases').select('id, title, summary, authority, geography, status, industry, tags, parties_involved, fine_amount, decision_date, start_date, citations_count, links, created_at', { count: 'exact' })
+    let query = supabase.from('Cases').select('id, title, summary, authority, geography, status, industry, tags, parties_involved, fine_amount, decision_date, start_date, citations_count, links, created_at, is_favorite', { count: 'exact' })
     
     // Configurar o Sorting principal
     if (sortBy === 'cited') {
@@ -92,6 +94,27 @@ export async function getCases(
         }
     }
 
+    if (timeframeFilters && timeframeFilters.length > 0) {
+        const currentYear = new Date().getFullYear();
+        const yearConditions: string[] = [];
+        
+        if (timeframeFilters.includes('last_5_years')) {
+            for (let i = 0; i < 5; i++) {
+                yearConditions.push(`decision_date.ilike.%${currentYear - i}%`);
+            }
+        }
+        if (timeframeFilters.includes('last_20_years')) {
+            for (let i = 0; i < 20; i++) {
+                yearConditions.push(`decision_date.ilike.%${currentYear - i}%`);
+            }
+        }
+        
+        const uniqueConditions = Array.from(new Set(yearConditions));
+        if (uniqueConditions.length > 0) {
+            query = query.or(uniqueConditions.join(','));
+        }
+    }
+
     if (caseTypeFilters && caseTypeFilters.length > 0) {
         // Neste momento a API guarda como tags
         query = query.overlaps('tags', caseTypeFilters)
@@ -137,7 +160,7 @@ export async function getUniqueFilters() {
 
     if (error || !data) {
         console.error('Error fetching unique filters:', error)
-        return { authorities: [], industries: [], statuses: [], tags: [], geographies: [], companies: [], decades: [] }
+        return { authorities: [], industries: [], statuses: [], tags: [], geographies: [], companies: [], decades: [], timeframes: [] }
     }
 
     const authorities = new Set<string>()
@@ -177,6 +200,8 @@ export async function getUniqueFilters() {
         'Platform regulation'
     ];
 
+    const timeframes = ['last_5_years', 'last_20_years'];
+
     return {
         authorities: Array.from(authorities).sort(),
         industries: Array.from(industries).sort(),
@@ -184,7 +209,8 @@ export async function getUniqueFilters() {
         geographies: Array.from(geographies).sort(),
         companies: Array.from(companies).sort(),
         decades: Array.from(decades).sort().reverse(),
-        tags: caseTypes
+        tags: caseTypes,
+        timeframes: timeframes
     }
 }
 

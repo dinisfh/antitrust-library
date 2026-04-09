@@ -250,3 +250,24 @@ export async function editCaseAction(formData: FormData) {
     revalidatePath('/')
     revalidatePath('/admin')
 }
+
+export async function toggleFavoriteCase(formData: FormData) {
+    const caseId = formData.get('caseId') as string
+    const currentStatus = formData.get('currentStatus') === 'true'
+
+    if (!caseId) return;
+
+    const admin = createAdminClient()
+    const { error: dbError } = await admin.from('Cases').update({
+        is_favorite: !currentStatus
+    }).eq('id', caseId)
+
+    if (dbError) {
+        console.error('Error toggling case favorite status:', dbError)
+        return;
+    }
+
+    revalidatePath('/')
+    revalidatePath('/admin')
+}
+
